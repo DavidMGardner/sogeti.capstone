@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{850A31
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{B140E7AB-99EF-49C2-9CDB-847CA158BFC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sogeti.Capstone.Data.Model", "Sogeti.Capstone.Data.Model\Sogeti.Capstone.Data.Model.csproj", "{E3E7E4DD-5BCC-45B2-9F09-00ED99D359DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{DC9B97B3-0D5E-4F68-9AE9-88A39EAF986C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC9B97B3-0D5E-4F68-9AE9-88A39EAF986C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC9B97B3-0D5E-4F68-9AE9-88A39EAF986C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3E7E4DD-5BCC-45B2-9F09-00ED99D359DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3E7E4DD-5BCC-45B2-9F09-00ED99D359DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3E7E4DD-5BCC-45B2-9F09-00ED99D359DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3E7E4DD-5BCC-45B2-9F09-00ED99D359DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,5 +55,6 @@ Global
 		{8F9DCDCB-CF6B-4B9B-94C0-D744EEE67173} = {7C113692-2AFC-4FD2-9572-8F2E1839CAD0}
 		{18C9393A-74F6-48F9-B960-4DC833DF9179} = {7384C132-B004-4268-B2C6-ACF1997E3334}
 		{DC9B97B3-0D5E-4F68-9AE9-88A39EAF986C} = {7C113692-2AFC-4FD2-9572-8F2E1839CAD0}
+		{E3E7E4DD-5BCC-45B2-9F09-00ED99D359DB} = {B140E7AB-99EF-49C2-9CDB-847CA158BFC4}
 	EndGlobalSection
 EndGlobal
