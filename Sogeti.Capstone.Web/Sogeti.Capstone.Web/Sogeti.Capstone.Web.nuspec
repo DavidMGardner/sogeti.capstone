@@ -9,7 +9,7 @@
     <licenseUrl>http://www.sogeti.com</licenseUrl>
     <projectUrl>https://github.com/DavidMGardner/sogeti.capstone</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Sogeti.Capstone.Web Reference CI / CD Application</description>
+    <description>Sogeti.Capstone.Web Reference CI/CD Application</description>
     <releaseNotes></releaseNotes>
   </metadata>
 </package>
