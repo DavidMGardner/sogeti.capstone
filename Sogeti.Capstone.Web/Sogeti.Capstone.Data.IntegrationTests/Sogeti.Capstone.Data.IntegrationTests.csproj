@@ -76,6 +76,7 @@
     <Compile Include="EventDataIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrationDataIntegrationTests.cs" />
+    <Compile Include="DatabaseDeleterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
