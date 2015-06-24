@@ -70,7 +70,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="IntegrationTestDatabaseInitalizer.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="EventDataIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

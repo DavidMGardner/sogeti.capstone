@@ -9,8 +9,8 @@ namespace Sogeti.Capstone.Data.IntegrationTests
 {
     [TestFixture]
     public class EventDataIntegrationTests
-    {   
-        private static readonly CapstoneContext Context = new CapstoneContext("DefaultConnection");
+    {
+        private static readonly CapstoneContext Context = new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
         
         [TestFixtureSetUp]
         public void Init()
