@@ -69,6 +69,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="StatusDataIntegrationTests.cs" />
+    <Compile Include="EventTypeDataIntegrationTests.cs" />
     <Compile Include="CategoryDataIntegrationTests.cs" />
     <Compile Include="IntegrationTestDatabaseInitalizer.cs" />
     <Compile Include="EventDataIntegrationTests.cs" />
