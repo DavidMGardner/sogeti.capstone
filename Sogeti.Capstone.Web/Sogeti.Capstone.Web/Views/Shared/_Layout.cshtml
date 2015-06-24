@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Sogeti.Capstone.Web.Properties
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -37,9 +38,18 @@
                 <p>&copy; @DateTime.Now.Year - A Sogeti Reference Application</p>
             </div>
             <div class="pull-right">
-                <button class="btn btn-primary" type="button">
-                    Build Number <span class="badge">@ViewContext.Controller.GetType().Assembly.GetName().Version</span>
-                </button>
+                <div class="row">
+                    <button class="btn btn-primary" type="button">
+                            Project <span class="badge">@AssemblyInfo.Title</span>
+                    </button>
+                </div>
+
+                <div class ="row">
+                    <button class="btn btn-primary" type="button">
+                            Build Number <span class="badge">@ViewContext.Controller.GetType().Assembly.GetName().Version</span>
+                    </button>
+                </div>
+                
             </div>
         </footer>
     </div>

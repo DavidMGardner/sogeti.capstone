@@ -1,5 +1,5 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
@@ -33,3 +33,20 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
+namespace Sogeti.Capstone.Web.Properties
+{
+    public static class AssemblyInfo
+    {
+        public static string GetAssemblyAttribute<T>(Func<T, string> value) where T : Attribute
+        {
+            T attribute = (T)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(T));
+            return value.Invoke(attribute);
+        }
+
+        public static string Title
+        {
+            get { return GetAssemblyAttribute<AssemblyTitleAttribute>(a => a.Title); }
+        }
+    }
+}
