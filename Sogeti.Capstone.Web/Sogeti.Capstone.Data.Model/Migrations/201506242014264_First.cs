@@ -8,20 +8,28 @@ namespace Sogeti.Capstone.Data.Model.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.Categories",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Events",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
                         Title = c.String(),
                         StartDateTime = c.DateTime(nullable: false),
                         EndDateTime = c.DateTime(nullable: false),
                         Description = c.String(),
                         LogoPath = c.String(),
                         LocationInformation = c.String(),
-                        Category_Id = c.String(maxLength: 128),
-                        EventType_Id = c.String(maxLength: 128),
-                        Registration_Id = c.String(maxLength: 128),
-                        Status_Id = c.String(maxLength: 128),
+                        Category_Id = c.Int(),
+                        EventType_Id = c.Int(),
+                        Registration_Id = c.Int(),
+                        Status_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Categories", t => t.Category_Id)
@@ -34,18 +42,10 @@ namespace Sogeti.Capstone.Data.Model.Migrations
                 .Index(t => t.Status_Id);
             
             CreateTable(
-                "dbo.Categories",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.EventTypes",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -53,7 +53,7 @@ namespace Sogeti.Capstone.Data.Model.Migrations
                 "dbo.Registrations",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -61,7 +61,7 @@ namespace Sogeti.Capstone.Data.Model.Migrations
                 "dbo.Status",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false, identity: true),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -80,8 +80,8 @@ namespace Sogeti.Capstone.Data.Model.Migrations
             DropTable("dbo.Status");
             DropTable("dbo.Registrations");
             DropTable("dbo.EventTypes");
-            DropTable("dbo.Categories");
             DropTable("dbo.Events");
+            DropTable("dbo.Categories");
         }
     }
 }

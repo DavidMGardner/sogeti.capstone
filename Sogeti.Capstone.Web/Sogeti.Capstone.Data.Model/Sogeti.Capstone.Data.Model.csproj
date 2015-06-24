@@ -66,13 +66,9 @@
     <Compile Include="DatabaseDateDeleter.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventType.cs" />
-    <Compile Include="Migrations\201506221717379_First.cs" />
-    <Compile Include="Migrations\201506221717379_First.Designer.cs">
-      <DependentUpon>201506221717379_First.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506241921095_Second.cs" />
-    <Compile Include="Migrations\201506241921095_Second.Designer.cs">
-      <DependentUpon>201506241921095_Second.cs</DependentUpon>
+    <Compile Include="Migrations\201506242014264_First.cs" />
+    <Compile Include="Migrations\201506242014264_First.Designer.cs">
+      <DependentUpon>201506242014264_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,11 +80,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201506221717379_First.resx">
-      <DependentUpon>201506221717379_First.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506241921095_Second.resx">
-      <DependentUpon>201506241921095_Second.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506242014264_First.resx">
+      <DependentUpon>201506242014264_First.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

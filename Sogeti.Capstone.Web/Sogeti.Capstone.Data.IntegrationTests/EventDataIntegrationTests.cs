@@ -31,7 +31,6 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 Category = new Category(),
                 Registration = new Registration(),
                 EventType = new EventType(),
-                Id = 1,
                 Status = new Status(),
                 LocationInformation = "At some new location",
                 LogoPath = "http://google/someimage",
