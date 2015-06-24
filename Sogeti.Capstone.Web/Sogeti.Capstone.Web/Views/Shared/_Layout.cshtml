@@ -33,7 +33,14 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <div class="pull-left">
+                <p>&copy; @DateTime.Now.Year - A Sogeti Reference Application</p>
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-primary" type="button">
+                    Build Number <span class="badge">@ViewContext.Controller.GetType().Assembly.GetName().Version</span>
+                </button>
+            </div>
         </footer>
     </div>
 
