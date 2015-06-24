@@ -63,7 +63,7 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="CapstoneContext.cs" />
     <Compile Include="Category.cs" />
-    <Compile Include="DatabaseDateDeleter.cs" />
+    <Compile Include="DatabaseDataDeleter.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventType.cs" />
     <Compile Include="Migrations\201506242014264_First.cs" />

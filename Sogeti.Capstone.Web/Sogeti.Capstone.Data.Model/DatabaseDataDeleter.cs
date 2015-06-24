@@ -8,7 +8,7 @@ using System.Data;
 
 namespace Sogeti.Capstone.Data.Model
 {
-    public class DatabaseDateDeleter
+    public class DatabaseDataDeleter
     {
         static readonly string[] _ignoredTables =
         {
@@ -20,7 +20,7 @@ namespace Sogeti.Capstone.Data.Model
         readonly DbContext _dbContext;
         readonly Lazy<string> deleteSql;
 
-        public DatabaseDateDeleter(DbContext dbContext)
+        public DatabaseDataDeleter(DbContext dbContext)
         {
             _dbContext = dbContext;
             deleteSql = new Lazy<string>(GetDeleteSql);

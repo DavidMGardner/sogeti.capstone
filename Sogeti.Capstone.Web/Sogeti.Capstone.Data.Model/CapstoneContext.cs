@@ -22,5 +22,7 @@ namespace Sogeti.Capstone.Data.Model
         public DbSet<Event> Events { get; set; }
         public DbSet<EventType> EventType { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<Registration> Registrations { get; set; }
+        public DbSet<Status> Statuses { get; set; }
     }
 }
