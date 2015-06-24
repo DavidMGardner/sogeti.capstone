@@ -5,7 +5,7 @@ namespace Sogeti.Capstone.Data.Model.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Sogeti.Capstone.Data.Model.CapstoneContext>
+    public class Configuration : DbMigrationsConfiguration<Sogeti.Capstone.Data.Model.CapstoneContext>
     {
         public Configuration()
         {

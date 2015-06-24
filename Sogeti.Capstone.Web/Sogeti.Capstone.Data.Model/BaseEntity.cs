@@ -9,6 +9,6 @@ namespace Sogeti.Capstone.Data.Model
     public class BaseEntity
     {
         [Key]
-        public string Id { get; set; }
+        public int Id { get; set; }
     }
 }
