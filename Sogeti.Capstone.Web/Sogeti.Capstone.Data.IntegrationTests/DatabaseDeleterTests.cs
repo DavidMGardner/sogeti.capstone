@@ -19,46 +19,32 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             IntegrationTestDatabaseInitalizer.AssemblyInit(Context);
         }
 
+        [SetUp]
+        public void TestInit()
+        {
+            Context.RemoveAllDbSetDataDatabase();
+        }
+
+        [TearDown]
+        public void TestDispose()
+        {
+            Context.RemoveAllDbSetDataDatabase();
+        }
+
         [Test]
         public void Database_Tables_Deleted()
         {
             //arrange
-            DatabaseDataDeleter dataDeleter = new DatabaseDataDeleter(Context);
 
             //act
-            dataDeleter.DeleteAllObjects();
+            Context.RemoveAllDbSetDataDatabase();
 
             //assert
             Context.Database.ShouldBeOfType<Database>();
         }
 
         [Test]
-        public void AutoIncrement_Reset()
-        {
-            //arrange
-            var newEventType = new EventType()
-            {
-                Id = 1
-            };
-
-            //act
-            Context.EventType.Add(newEventType);
-            Context.SaveChanges();
-
-            DatabaseDataDeleter dataDeleter = new DatabaseDataDeleter(Context);
-            dataDeleter.DeleteAllObjects();
-            Context.SaveChanges();
-
-            Context.EventType.Add(newEventType);
-            Context.SaveChanges();
-
-            Context.EventType.First().Id.ShouldBe(1);
-
-            dataDeleter.DeleteAllObjects();
-        }
-
-        [Test]
-        public void Database_Data_Deleted()
+        public void Database_Delete_PendingAdd()
         {
             //arrange
             var newEvent = new Event
@@ -75,13 +61,63 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 LogoPath = "http://google/someimage",
             };
 
+            //act
             Context.Events.Add(newEvent);
             Context.SaveChanges();
 
-            DatabaseDataDeleter dataDeleter = new DatabaseDataDeleter(Context);
+            Context.RemoveDbSetDataDatabase(Context.Events);
+
+            //assert
+            Context.Events.Count().ShouldBe(0);
+        }
+
+
+        [Test]
+        public void AutoIncrement_Reset()
+        {
+            //arrange
+            var newEventType = new EventType()
+            {
+                Id = 1
+            };
 
             //act
-            dataDeleter.DeleteAllObjects();
+            Context.EventType.Add(newEventType);
+            Context.SaveChanges();
+
+            Context.RemoveDbSetDataDatabase(Context.EventType);
+
+            Context.EventType.Add(newEventType);
+            Context.SaveChanges();
+
+            //assert
+            Context.EventType.Count().ShouldBe(1);
+            Context.EventType.First().Id.ShouldBe(1);
+        }
+
+        [Test]
+        public async void Database_Data_Deleted()
+        {
+            //arrange
+            var newEvent = new Event
+            {
+                Title = "Sample Event",
+                Description = "Sample Event Description",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(1),
+                Category = new Category(),
+                Registration = new Registration(),
+                EventType = new EventType(),
+                Status = new Status(),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage",
+            };
+
+            //act
+            Context.Events.Add(newEvent);
+            Context.SaveChanges();
+
+            Context.RemoveAllDbSetDataDatabase();
 
             //assert
             Context.Events.Count().ShouldBe(0);

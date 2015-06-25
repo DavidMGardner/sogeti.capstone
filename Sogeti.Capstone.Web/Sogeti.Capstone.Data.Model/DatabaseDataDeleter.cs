@@ -26,6 +26,7 @@ namespace Sogeti.Capstone.Data.Model
             deleteSql = new Lazy<string>(GetDeleteSql);
         }
 
+
         string GetDeleteSql()
         {
             var allTables = GetAllTables();
@@ -34,7 +35,7 @@ namespace Sogeti.Capstone.Data.Model
 
             var tablesToDelete = BuildTableList(allTables, allRelationships);
 
-            return BuildTableSql(tablesToDelete);
+            return BuildTableSqlAutoIncrementReset(tablesToDelete);
         }
 
         public virtual void DeleteAllObjects()
@@ -47,6 +48,15 @@ namespace Sogeti.Capstone.Data.Model
         static string BuildTableSql(IEnumerable<string> tablesToDelete)
         {
             return tablesToDelete.Aggregate(string.Empty, (current, tableName) => current + string.Format("delete from [{0}];", tableName));
+        }
+
+        static string BuildTableSqlAutoIncrementReset(IEnumerable<string> tablesToDelete)
+        {
+            string sql = tablesToDelete.Aggregate(string.Empty, (current, tableName) =>
+                        current + string.Format("delete from [{0}];", tableName));
+            sql += tablesToDelete.Aggregate(String.Empty, (current, tableName) =>
+                current + string.Format(" DBCC CHECKIDENT ({0}, RESEED, 0);", tableName));
+            return sql;
         }
 
         static string[] BuildTableList(ICollection<string> allTables, ICollection<Relationship> allRelationships)
