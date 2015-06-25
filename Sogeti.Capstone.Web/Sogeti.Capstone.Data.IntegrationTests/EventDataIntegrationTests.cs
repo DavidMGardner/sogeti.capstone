@@ -56,8 +56,41 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             //assert
             int rowCount = Context.Events.Count();
             rowCount.ShouldBeGreaterThan(0);
+        }
 
+        [Test]
+        public void Add_Event_With_ForeignKeys()
+        {
+            // arrange
+            var newEventType = new EventType()
+            {
+            };
 
+            Context.EventType.Add(newEventType);
+            Context.SaveChanges();
+
+            var newEvent = new Event
+            {
+                Title = "Sample Event",
+                Description = "Sample Event Description",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(1),
+                Category = new Category(),
+                Registration = new Registration(),
+                EventType = newEventType,
+                Status = new Status(),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage",
+            };
+
+            // act
+            Context.Events.Add(newEvent);
+            Context.SaveChanges();
+
+            //assert
+            Context.Events.Count().ShouldBeGreaterThan(0);
+            Context.Events.Find(1).ShouldBe(newEvent);
+            Context.Events.Find(1).EventType.ShouldBe(newEventType);
         }
 
         [Test]

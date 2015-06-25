@@ -42,11 +42,9 @@ namespace Sogeti.Capstone.Data.Model
             dataDeleter.DeleteAllObjects();
         }
 
-
         public void RemoveDbSetDataDatabase(DbSet set)
         {
             RemoveDbSetData(set);
-
             SaveChanges();
 
             dataDeleter.DeleteAllObjects();

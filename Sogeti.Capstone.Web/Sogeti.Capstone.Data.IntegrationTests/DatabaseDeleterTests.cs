@@ -78,10 +78,11 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             //arrange
             var newEventType = new EventType()
             {
-                Id = 1
             };
 
             //act
+            Context.EventType.Add(newEventType);
+            Context.EventType.Add(newEventType);
             Context.EventType.Add(newEventType);
             Context.SaveChanges();
 
