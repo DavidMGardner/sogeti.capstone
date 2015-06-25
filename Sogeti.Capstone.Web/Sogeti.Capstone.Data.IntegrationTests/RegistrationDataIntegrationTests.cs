@@ -10,6 +10,8 @@ namespace Sogeti.Capstone.Data.IntegrationTests
     {
         private static readonly CapstoneContext Context = new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
 
+        #region SetUp
+
         [TestFixtureSetUp]
         public void Init()
         {
@@ -22,12 +24,9 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             Context.RemoveAllDbSetDataDatabase();
         }
 
-        [TearDown]
-        public void TestDispose()
-        {
-            Context.RemoveAllDbSetDataDatabase();
-        }
+        #endregion
 
+        #region Tests
         [Test]
         public void Add_Registration_With_Defaults()
         {
@@ -50,10 +49,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void Delete_Registration()
         {
             //arrange
-            var newRegistration = new Registration
-            {
-                Id = 1
-            };
+            var newRegistration = new Registration();
 
             //act
             Context.Registrations.Add(newRegistration);
@@ -66,5 +62,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             int rowCount = Context.Registrations.Count();
             rowCount.ShouldBe(0);
         }
+#endregion
+
     }
 }

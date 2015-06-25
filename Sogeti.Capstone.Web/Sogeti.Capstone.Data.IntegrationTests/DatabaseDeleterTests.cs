@@ -11,7 +11,10 @@ namespace Sogeti.Capstone.Data.IntegrationTests
     [TestFixture]
     public class DatabaseDeleterTests
     {
-        private static readonly CapstoneContext Context = new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
+        private static readonly CapstoneContext Context =
+            new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
+
+        #region SetUp
 
         [TestFixtureSetUp]
         public void Init()
@@ -25,11 +28,9 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             Context.RemoveAllDbSetDataDatabase();
         }
 
-        [TearDown]
-        public void TestDispose()
-        {
-            Context.RemoveAllDbSetDataDatabase();
-        }
+        #endregion
+
+        #region Tests
 
         [Test]
         public void Database_Tables_Deleted()
@@ -123,5 +124,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             //assert
             Context.Events.Count().ShouldBe(0);
         }
+
+        #endregion
     }
 }

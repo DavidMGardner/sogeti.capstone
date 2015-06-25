@@ -8,7 +8,10 @@ namespace Sogeti.Capstone.Data.IntegrationTests
     [TestFixture]
     public class StatusDataIntegrationTests
     {
-        private static readonly CapstoneContext Context = new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
+        private static readonly CapstoneContext Context =
+            new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
+
+        #region SetUp
 
         [TestFixtureSetUp]
         public void Init()
@@ -22,11 +25,9 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             Context.RemoveAllDbSetDataDatabase();
         }
 
-        [TearDown]
-        public void TestDispose()
-        {
-            Context.RemoveAllDbSetDataDatabase();
-        }
+        #endregion
+
+        #region Tests
 
         [Test]
         public void Add_Status_With_Defaults()
@@ -50,10 +51,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void Delete_Status()
         {
             //arrange
-            var newStatus = new Status
-            {
-                Id = 1
-            };
+            var newStatus = new Status();
 
             //act
             Context.Statuses.Add(newStatus);
@@ -66,5 +64,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             int rowCount = Context.Statuses.Count();
             rowCount.ShouldBe(0);
         }
+
+        #endregion
     }
 }

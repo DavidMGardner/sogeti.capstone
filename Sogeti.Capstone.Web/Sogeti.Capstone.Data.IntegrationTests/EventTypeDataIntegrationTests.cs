@@ -8,7 +8,10 @@ namespace Sogeti.Capstone.Data.IntegrationTests
     [TestFixture]
     public class EventTypeDataIntegrationTests
     {
-        private static readonly CapstoneContext Context = new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
+        private static readonly CapstoneContext Context =
+            new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
+
+        #region SetUp
 
         [TestFixtureSetUp]
         public void Init()
@@ -22,20 +25,15 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             Context.RemoveAllDbSetDataDatabase();
         }
 
-        [TearDown]
-        public void TestDispose()
-        {
-            Context.RemoveAllDbSetDataDatabase();
-        }
+        #endregion
+
+        #region Tests
 
         [Test]
         public void Add_EventType_With_Defaults()
         {
             //arrange
-            var newEventType = new EventType()
-            {
-                Id = 1
-            };
+            var newEventType = new EventType();
 
             //act
             Context.EventType.Add(newEventType);
@@ -50,10 +48,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void Delete_EventType()
         {
             //arrange
-            var newEventType = new EventType
-            {
-                Id = 1
-            };
+            var newEventType = new EventType();
 
             //act
             Context.EventType.Add(newEventType);
@@ -66,5 +61,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             int rowCount = Context.EventType.Count();
             rowCount.ShouldBe(0);
         }
+
+        #endregion
     }
 }

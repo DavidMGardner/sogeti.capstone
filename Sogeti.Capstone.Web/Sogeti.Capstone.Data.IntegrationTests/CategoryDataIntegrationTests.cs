@@ -9,7 +9,10 @@ namespace Sogeti.Capstone.Data.IntegrationTests
     [TestFixture]
     public class CategoryDataIntegrationTests
     {
-        private static readonly CapstoneContext Context = new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
+        private static readonly CapstoneContext Context =
+            new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
+
+        #region SetUp
 
         [TestFixtureSetUp]
         public void Init()
@@ -23,20 +26,15 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             Context.RemoveAllDbSetDataDatabase();
         }
 
-        [TearDown]
-        public void TestDispose()
-        {
-            Context.RemoveAllDbSetDataDatabase();
-        }
+        #endregion
+
+        #region Tests
 
         [Test]
         public void Add_Category_With_Defaults()
         {
             //arrange
-            var newCategory = new Category()
-            {
-                Id = 1
-            };
+            var newCategory = new Category();
 
             //act
             Context.Category.Add(newCategory);
@@ -51,10 +49,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void Delete_Category()
         {
             //arrange
-            var newCategory = new Category
-            {
-                Id = 1
-            };
+            var newCategory = new Category();
 
             //act
             Context.Category.Add(newCategory);
@@ -67,5 +62,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             int rowCount = Context.Category.Count();
             rowCount.ShouldBe(0);
         }
+
+        #endregion
     }
 }
