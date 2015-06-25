@@ -17,6 +17,18 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             IntegrationTestDatabaseInitalizer.AssemblyInit(Context);
         }
 
+        [SetUp]
+        public void TestInit()
+        {
+            Context.RemoveAllDbSetDataDatabase();
+        }
+
+        [TearDown]
+        public void TestDispose()
+        {
+            Context.RemoveAllDbSetDataDatabase();
+        }
+
         [Test]
         public void Add_Category_With_Defaults()
         {
@@ -35,22 +47,6 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             rowCount.ShouldBeGreaterThan(0);
         }
 
-        //[Test]
-        //public void Update_Category()
-        //{
-        //    //arrange
-        //    var oldCategory = Context.Category.First(e => e.Id == 1);
-        //    oldCategory.Id = 999;
-
-        //    //act
-        //    Context.Entry(oldCategory).State = EntityState.Modified;
-        //    Context.SaveChanges();
-
-        //    //assert
-        //    var modifiedCategory = Context.Category.Find(999);
-        //    modifiedCategory.Id.ShouldBe(999);
-        //}
-
         [Test]
         public void Delete_Category()
         {
@@ -64,8 +60,8 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             Context.Category.Add(newCategory);
             Context.SaveChanges();
 
-            DatabaseDataDeleter dataDeleter = new DatabaseDataDeleter(Context);
-            dataDeleter.DeleteAllObjects();
+            Context.Category.Remove(newCategory);
+            Context.SaveChanges();
 
             //assert
             int rowCount = Context.Category.Count();

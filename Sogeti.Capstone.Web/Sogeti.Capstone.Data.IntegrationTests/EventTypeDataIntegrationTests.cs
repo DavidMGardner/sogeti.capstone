@@ -16,6 +16,18 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             IntegrationTestDatabaseInitalizer.AssemblyInit(Context);
         }
 
+        [SetUp]
+        public void TestInit()
+        {
+            Context.RemoveAllDbSetDataDatabase();
+        }
+
+        [TearDown]
+        public void TestDispose()
+        {
+            Context.RemoveAllDbSetDataDatabase();
+        }
+
         [Test]
         public void Add_EventType_With_Defaults()
         {

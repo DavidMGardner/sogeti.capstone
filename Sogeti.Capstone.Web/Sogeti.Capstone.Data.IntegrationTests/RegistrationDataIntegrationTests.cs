@@ -16,6 +16,18 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             IntegrationTestDatabaseInitalizer.AssemblyInit(Context);
         }
 
+        [SetUp]
+        public void TestInit()
+        {
+            Context.RemoveAllDbSetDataDatabase();
+        }
+
+        [TearDown]
+        public void TestDispose()
+        {
+            Context.RemoveAllDbSetDataDatabase();
+        }
+
         [Test]
         public void Add_Registration_With_Defaults()
         {
@@ -47,8 +59,8 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             Context.Registrations.Add(newRegistration);
             Context.SaveChanges();
 
-            DatabaseDataDeleter dataDeleter = new DatabaseDataDeleter(Context);
-            dataDeleter.DeleteAllObjects();
+            Context.Registrations.Remove(newRegistration);
+            Context.SaveChanges();
 
             //assert
             int rowCount = Context.Registrations.Count();
