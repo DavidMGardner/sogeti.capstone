@@ -32,6 +32,30 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             Context.Database.ShouldBeOfType<Database>();
         }
 
+        [Test]
+        public void AutoIncrement_Reset()
+        {
+            //arrange
+            var newEventType = new EventType()
+            {
+                Id = 1
+            };
+
+            //act
+            Context.EventType.Add(newEventType);
+            Context.SaveChanges();
+
+            DatabaseDataDeleter dataDeleter = new DatabaseDataDeleter(Context);
+            dataDeleter.DeleteAllObjects();
+            Context.SaveChanges();
+
+            Context.EventType.Add(newEventType);
+            Context.SaveChanges();
+
+            Context.EventType.First().Id.ShouldBe(1);
+
+            dataDeleter.DeleteAllObjects();
+        }
 
         [Test]
         public void Database_Data_Deleted()
