@@ -33,5 +33,26 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             int rowCount = Context.Registrations.Count();
             rowCount.ShouldBeGreaterThan(0);
         }
+
+        [Test]
+        public void Delete_Registration()
+        {
+            //arrange
+            var newRegistration = new Registration
+            {
+                Id = 1
+            };
+
+            //act
+            Context.Registrations.Add(newRegistration);
+            Context.SaveChanges();
+
+            DatabaseDataDeleter dataDeleter = new DatabaseDataDeleter(Context);
+            dataDeleter.DeleteAllObjects();
+
+            //assert
+            int rowCount = Context.Registrations.Count();
+            rowCount.ShouldBe(0);
+        }
     }
 }
