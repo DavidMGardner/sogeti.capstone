@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using NUnit.Framework;
 using Shouldly;
@@ -18,16 +19,16 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             IntegrationTestDatabaseInitalizer.AssemblyInit(Context);
         }
 
-        [Test]
-        public void Initial_Seed()
+                [SetUp]
+        public void TestInit()
         {
-            // arrange
+            Context.RemoveAllDbSetDataDatabase();
+        }
 
-            // act
-
-            //assert
-            int rowCount = Context.Events.Count();
-            rowCount.ShouldBe(1);
+        [TearDown]
+        public void TestDispose()
+        {
+            Context.RemoveAllDbSetDataDatabase();
         }
 
         [Test]
@@ -62,10 +63,27 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         [Test]
         public void Update_Event_From_Defaults()
         {
-            //arrange
+            // arrange
+            var newEvent = new Event
+            {
+                Title = "Sample Event",
+                Description = "Sample Event Description",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(1),
+                Category = new Category(),
+                Registration = new Registration(),
+                EventType = new EventType(),
+                Status = new Status(),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage",
+            };
+
+            Context.Events.Add(newEvent);
+            Context.SaveChanges();
+
             Event oldEvent = Context.Events.First(e => e.Title == "Sample Event");
             oldEvent.Title = "New Title";
-            int oldId = oldEvent.Id;
+            var oldId = oldEvent.Id;
 
             //act
             Context.Entry(oldEvent).State = EntityState.Modified;
@@ -79,16 +97,30 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         [Test]
         public void Delete_Event_From_Defaults()
         {
-            //arrange
-            Event oldEvent = Context.Events.First(e => e.Title == "Sample Event");
-            int oldId = oldEvent.Id;
+            // arrange
+            var newEvent = new Event
+            {
+                Title = "Sample Event",
+                Description = "Sample Event Description",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(1),
+                Category = new Category(),
+                Registration = new Registration(),
+                EventType = new EventType(),
+                Status = new Status(),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage",
+            };
+
+            // act
+            Context.Events.Add(newEvent);
+            Context.SaveChanges();
 
             //act
-            Context.Events.Remove(oldEvent);
+            Context.Events.Remove(newEvent);
             Context.SaveChanges();
 
             //assert
-            Event deletedEvent = Context.Events.Find(oldId);
             Context.Events.Count().ShouldBe(0);
         }
     }
