@@ -45,5 +45,26 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             int rowCount = Context.EventType.Count();
             rowCount.ShouldBeGreaterThan(0);
         }
+
+        [Test]
+        public void Delete_EventType()
+        {
+            //arrange
+            var newEventType = new EventType
+            {
+                Id = 1
+            };
+
+            //act
+            Context.EventType.Add(newEventType);
+            Context.SaveChanges();
+
+            Context.EventType.Remove(newEventType);
+            Context.SaveChanges();
+
+            //assert
+            int rowCount = Context.EventType.Count();
+            rowCount.ShouldBe(0);
+        }
     }
 }

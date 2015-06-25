@@ -45,5 +45,26 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             int rowCount = Context.Statuses.Count();
             rowCount.ShouldBeGreaterThan(0);
         }
+
+        [Test]
+        public void Delete_Status()
+        {
+            //arrange
+            var newStatus = new Status
+            {
+                Id = 1
+            };
+
+            //act
+            Context.Statuses.Add(newStatus);
+            Context.SaveChanges();
+
+            Context.Statuses.Remove(newStatus);
+            Context.SaveChanges();
+
+            //assert
+            int rowCount = Context.Statuses.Count();
+            rowCount.ShouldBe(0);
+        }
     }
 }
