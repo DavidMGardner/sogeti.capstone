@@ -63,6 +63,20 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             rowCount.ShouldBe(0);
         }
 
+        [Test]
+        public void Should_Populate_ID()
+        {
+            // arrange
+            var newCategory = new Category();
+
+            // act
+            Context.Category.Add(newCategory);
+            Context.SaveChanges();
+
+            // assert
+            Context.Category.First().Id.ShouldBe(1);
+        }
+
         #endregion
     }
 }

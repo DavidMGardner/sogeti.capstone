@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using NUnit.Framework;
 using Shouldly;
 using Sogeti.Capstone.Data.Model;
@@ -74,6 +75,31 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             //assert
             int rowCount = Context.EventType.Count();
             rowCount.ShouldBe(0);
+        }
+
+        [Test]
+        public void Update_EventType_From_Defaults()
+        {
+            // arrange
+            var newEventType = new EventType()
+            {
+                Title = "Sample Status"
+            };
+            Context.EventType.Add(newEventType);
+            Context.SaveChanges();
+
+            EventType oldEventType = Context.EventType.First(e => e.Title == "Sample Status");
+            oldEventType.Title = "New Status";
+
+            var oldId = oldEventType.Id;
+
+            //act
+            Context.Entry(oldEventType).State = EntityState.Modified;
+            Context.SaveChanges();
+
+            //assert
+            EventType modifiedEventType = Context.EventType.Find(oldId);
+            modifiedEventType.Title.ShouldBe("New Status");
         }
 
         #endregion

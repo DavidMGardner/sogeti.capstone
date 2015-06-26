@@ -157,11 +157,11 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             //assert
             Event modifiedEvent = Context.Events.Find(oldId);
             modifiedEvent.Title.ShouldBe("New Title");
-            oldEvent.Description.ShouldBe("New Description");
-            oldEvent.StartDateTime.ShouldBe(new DateTime(2015, 4, 28));
-            oldEvent.EndDateTime.ShouldBe(new DateTime(2015, 4, 28));
-            oldEvent.LocationInformation.ShouldBe("none");
-            oldEvent.LogoPath.ShouldBe("http://fake/image");
+            modifiedEvent.Description.ShouldBe("New Description");
+            modifiedEvent.StartDateTime.ShouldBe(new DateTime(2015, 4, 28));
+            modifiedEvent.EndDateTime.ShouldBe(new DateTime(2015, 4, 28));
+            modifiedEvent.LocationInformation.ShouldBe("none");
+            modifiedEvent.LogoPath.ShouldBe("http://fake/image");
         }
 
         [Test]

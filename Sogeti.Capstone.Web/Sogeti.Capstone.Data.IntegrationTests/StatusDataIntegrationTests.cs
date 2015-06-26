@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using NUnit.Framework;
 using Shouldly;
 using Sogeti.Capstone.Data.Model;
@@ -74,6 +76,31 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             //assert
             int rowCount = Context.Statuses.Count();
             rowCount.ShouldBe(0);
+        }
+
+        [Test]
+        public void Update_Status_From_Defaults()
+        {
+            // arrange
+            var newStatus = new Status()
+            {
+                Title = "Sample Status"
+            };
+            Context.Statuses.Add(newStatus);
+            Context.SaveChanges();
+
+            Status oldStatus = Context.Statuses.First(e => e.Title == "Sample Status");
+            oldStatus.Title = "New Status";
+
+            var oldId = oldStatus.Id;
+
+            //act
+            Context.Entry(oldStatus).State = EntityState.Modified;
+            Context.SaveChanges();
+
+            //assert
+            Status modifiedStatus = Context.Statuses.Find(oldId);
+            modifiedStatus.Title.ShouldBe("New Status");
         }
 
         #endregion
