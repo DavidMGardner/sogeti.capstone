@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -55,7 +56,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 StartDateTime = DateTime.Now,
                 EndDateTime = DateTime.Now.AddHours(1),
                 Category = new Category(),
-                Registration = new Registration(),
+                Registrations = new List<Registration>(),
                 EventType = new EventType(),
                 Status = new Status(),
                 LocationInformation = "At some new location",
@@ -107,7 +108,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 StartDateTime = DateTime.Now,
                 EndDateTime = DateTime.Now.AddHours(1),
                 Category = new Category(),
-                Registration = new Registration(),
+                Registrations = new List<Registration>(),
                 EventType = new EventType(),
                 Status = new Status(),
                 LocationInformation = "At some new location",

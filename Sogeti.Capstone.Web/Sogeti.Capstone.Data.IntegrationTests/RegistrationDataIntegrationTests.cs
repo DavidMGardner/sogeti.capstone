@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Shouldly;
 using Sogeti.Capstone.Data.Model;
@@ -31,7 +33,27 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void Add_Registration_With_Defaults()
         {
             //arrange
-            var newRegistration = new Registration();
+            var newEvent = new Event
+            {
+                Title = "Sample Event",
+                Description = "Sample Event Description",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(1),
+                Category = new Category(),
+                Registrations = new List<Registration>(),
+                EventType = new EventType(),
+                Status = new Status(),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage",
+            };
+            Context.Events.Add(newEvent);
+            var newRegistration = new Registration()
+            {
+                Event = newEvent,
+                EventType = new EventType(),
+                RegisterDateTime = DateTime.Now,
+                Title = "A title",
+            };
 
             //act
             Context.Registrations.Add(newRegistration);
@@ -46,7 +68,27 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void Should_Populate_ID()
         {
             // arrange
-            var newRegistration = new Registration();
+            var newEvent = new Event
+            {
+                Title = "Sample Event",
+                Description = "Sample Event Description",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(1),
+                Category = new Category(),
+                Registrations = new List<Registration>(),
+                EventType = new EventType(),
+                Status = new Status(),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage",
+            };
+            Context.Events.Add(newEvent);
+            var newRegistration = new Registration()
+            {
+                Event = newEvent,
+                EventType = new EventType(),
+                RegisterDateTime = DateTime.Now,
+                Title = "A title",
+            };
 
             // act
             Context.Registrations.Add(newRegistration);
@@ -60,7 +102,27 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void Delete_Registration()
         {
             //arrange
-            var newRegistration = new Registration();
+            var newEvent = new Event
+            {
+                Title = "Sample Event",
+                Description = "Sample Event Description",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(1),
+                Category = new Category(),
+                Registrations = new List<Registration>(),
+                EventType = new EventType(),
+                Status = new Status(),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage",
+            };
+            Context.Events.Add(newEvent);
+            var newRegistration = new Registration()
+            {
+                Event = newEvent,
+                EventType = new EventType(),
+                RegisterDateTime = DateTime.Now,
+                Title = "A title",
+            };
 
             //act
             Context.Registrations.Add(newRegistration);
