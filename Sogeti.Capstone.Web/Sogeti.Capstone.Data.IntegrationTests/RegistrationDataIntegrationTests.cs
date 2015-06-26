@@ -31,10 +31,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void Add_Registration_With_Defaults()
         {
             //arrange
-            var newRegistration = new Registration()
-            {
-                Id = 1
-            };
+            var newRegistration = new Registration();
 
             //act
             Context.Registrations.Add(newRegistration);
@@ -43,6 +40,20 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             //assert
             int rowCount = Context.Registrations.Count();
             rowCount.ShouldBeGreaterThan(0);
+        }
+
+        [Test]
+        public void Should_Populate_ID()
+        {
+            // arrange
+            var newRegistration = new Registration();
+
+            // act
+            Context.Registrations.Add(newRegistration);
+            Context.SaveChanges();
+
+            // assert
+            Context.Registrations.First().Id.ShouldBe(1);
         }
 
         [Test]
