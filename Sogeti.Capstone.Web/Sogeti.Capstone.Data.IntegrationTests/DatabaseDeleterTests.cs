@@ -72,7 +72,6 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             Context.Events.Count().ShouldBe(0);
         }
 
-
         [Test]
         public void AutoIncrement_Reset()
         {
@@ -98,7 +97,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         }
 
         [Test]
-        public async void Database_Data_Deleted()
+        public void Database_Data_Deleted()
         {
             //arrange
             var newEvent = new Event

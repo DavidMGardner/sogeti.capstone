@@ -45,6 +45,20 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         }
 
         [Test]
+        public void Should_Populate_ID()
+        {
+            // arrange
+            var newEventType = new EventType();
+
+            // act
+            Context.EventType.Add(newEventType);
+            Context.SaveChanges();
+
+            // assert
+            Context.EventType.First().Id.ShouldBe(1);
+        }
+
+        [Test]
         public void Delete_EventType()
         {
             //arrange

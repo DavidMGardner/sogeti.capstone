@@ -60,6 +60,32 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         }
 
         [Test]
+        public void Should_Populate_ID()
+        {
+            // arrange
+            var newEvent = new Event
+            {
+                Title = "Sample Event",
+                Description = "Sample Event Description",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(1),
+                Category = new Category(),
+                Registration = new Registration(),
+                EventType = new EventType(),
+                Status = new Status(),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage",
+            };
+
+            // act
+            Context.Events.Add(newEvent);
+            Context.SaveChanges();
+
+            //assert
+            Context.Events.First().Id.ShouldBe(1);
+        }
+
+        [Test]
         public void Add_Event_With_ForeignKeys()
         {
             // arrange
@@ -115,6 +141,12 @@ namespace Sogeti.Capstone.Data.IntegrationTests
 
             Event oldEvent = Context.Events.First(e => e.Title == "Sample Event");
             oldEvent.Title = "New Title";
+            oldEvent.Description = "New Description";
+            oldEvent.StartDateTime = new DateTime(2015, 4, 28);
+            oldEvent.EndDateTime = new DateTime(2015, 4, 28);
+            oldEvent.LocationInformation = "none";
+            oldEvent.LogoPath = "http://fake/image";
+
             var oldId = oldEvent.Id;
 
             //act
@@ -124,6 +156,11 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             //assert
             Event modifiedEvent = Context.Events.Find(oldId);
             modifiedEvent.Title.ShouldBe("New Title");
+            oldEvent.Description.ShouldBe("New Description");
+            oldEvent.StartDateTime.ShouldBe(new DateTime(2015, 4, 28));
+            oldEvent.EndDateTime.ShouldBe(new DateTime(2015, 4, 28));
+            oldEvent.LocationInformation.ShouldBe("none");
+            oldEvent.LogoPath.ShouldBe("http://fake/image");
         }
 
         [Test]

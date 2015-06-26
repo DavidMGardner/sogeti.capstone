@@ -33,10 +33,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void Add_Status_With_Defaults()
         {
             //arrange
-            var newStatus = new Status()
-            {
-                Id = 1
-            };
+            var newStatus = new Status();
 
             //act
             Context.Statuses.Add(newStatus);
@@ -45,6 +42,20 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             //assert
             int rowCount = Context.Statuses.Count();
             rowCount.ShouldBeGreaterThan(0);
+        }
+
+        [Test]
+        public void Should_Populate_ID()
+        {
+            // arrange
+            var newStatus = new Status();
+
+            // act
+            Context.Statuses.Add(newStatus);
+            Context.SaveChanges();
+
+            // assert
+            Context.Statuses.First().Id.ShouldBe(1);
         }
 
         [Test]
