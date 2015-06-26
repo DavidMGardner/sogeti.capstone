@@ -17,9 +17,9 @@ namespace Sogeti.Capstone.Data.Model
         public string LogoPath { get; set; }
         public string LocationInformation { get; set; }
 
-        public Category Category { get; set; }
-        public Registration Registration { get; set; }
-        public EventType EventType { get; set; }
-        public Status Status { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual List<Registration> Registrations { get; set; }
+        public virtual EventType EventType { get; set; }
+        public virtual Status Status { get; set; }
     }
 }

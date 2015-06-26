@@ -7,5 +7,6 @@ namespace Sogeti.Capstone.Data.Model
 {
     public class EventType : BaseEntity
     {
+        public string Title { get; set; }
     }
 }

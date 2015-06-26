@@ -7,5 +7,6 @@ namespace Sogeti.Capstone.Data.Model
 {
     public class Status : BaseEntity
     {
+        public string Title { get; set; }
     }
 }
