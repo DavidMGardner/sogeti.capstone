@@ -15,6 +15,8 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         private static readonly CapstoneContext Context =
             new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
 
+        private Status _sampleStatus;
+
         #region SetUp
 
         [TestFixtureSetUp]
@@ -27,6 +29,10 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void TestInit()
         {
             Context.RemoveAllDbSetDataDatabase();
+            _sampleStatus = new Status()
+            {
+                Title = "Sample Title"
+            };
         }
 
         #endregion
@@ -60,6 +66,28 @@ namespace Sogeti.Capstone.Data.IntegrationTests
 
             // assert
             Context.Statuses.First().Id.ShouldBe(1);
+        }
+
+        [Test]
+        public void Should_Not_Allow_Duplicate_ID()
+        {
+            // arrange
+            Context.Statuses.Add(_sampleStatus);
+            Context.SaveChanges();
+
+            Status duplicateStatus = new Status
+            {
+                Id = 1,
+                Title = "Unique Status"
+            };
+
+            // act
+            Context.Statuses.Add(duplicateStatus);
+            Context.SaveChanges();
+            Status correctedDuplicateStatus = Context.Statuses.First(e => e.Title == "Unique Status");
+
+            // assert
+            correctedDuplicateStatus.Id.ShouldNotBe(1);
         }
 
         [Test]

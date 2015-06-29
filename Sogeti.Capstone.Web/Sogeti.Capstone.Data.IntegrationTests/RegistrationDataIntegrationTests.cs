@@ -14,6 +14,8 @@ namespace Sogeti.Capstone.Data.IntegrationTests
     {
         private static readonly CapstoneContext Context = new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
 
+        private Registration _sampleRegistration;
+
         #region SetUp
 
         [TestFixtureSetUp]
@@ -26,6 +28,27 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void TestInit()
         {
             Context.RemoveAllDbSetDataDatabase();
+
+            var newEvent = new Event
+            {
+                Title = "Sample Event",
+                Description = "Sample Event Description",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(1),
+                Category = new Category(),
+                Registrations = new List<Registration>(),
+                EventType = new EventType(),
+                Status = new Status(),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage"
+            };
+            _sampleRegistration = new Registration()
+            {
+                Event = newEvent,
+                EventType = new EventType(),
+                RegisterDateTime = DateTime.Now,
+                Title = "Sample Registration"
+            };
         }
 
         #endregion
@@ -98,6 +121,44 @@ namespace Sogeti.Capstone.Data.IntegrationTests
 
             // assert
             Context.Registrations.First().Id.ShouldBe(1);
+        }
+
+        [Test]
+        public void Should_Not_Allow_Duplicate_ID()
+        {
+            // arrange
+            Context.Registrations.Add(_sampleRegistration);
+            Context.SaveChanges();
+
+            var newEvent = new Event
+            {
+                Title = "Sample Event",
+                Description = "Sample Event Description",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(1),
+                Category = new Category(),
+                Registrations = new List<Registration>(),
+                EventType = new EventType(),
+                Status = new Status(),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage"
+            };
+            Registration duplicateRegistration = new Registration
+            {
+                Id = 1,
+                Event = newEvent,
+                EventType = new EventType(),
+                RegisterDateTime = DateTime.Now,
+                Title = "Unique Registration"
+            };
+
+            // act
+            Context.Registrations.Add(duplicateRegistration);
+            Context.SaveChanges();
+            Registration correctedDuplicateRegistration = Context.Registrations.First(e => e.Title == "Unique Registration");
+
+            // assert
+            correctedDuplicateRegistration.Id.ShouldNotBe(1);
         }
 
         [Test]

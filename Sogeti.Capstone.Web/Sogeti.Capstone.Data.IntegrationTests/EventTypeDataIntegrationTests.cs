@@ -13,6 +13,8 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         private static readonly CapstoneContext Context =
             new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
 
+        private EventType _sampleEventType;
+
         #region SetUp
 
         [TestFixtureSetUp]
@@ -25,6 +27,11 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void TestInit()
         {
             Context.RemoveAllDbSetDataDatabase();
+
+            _sampleEventType = new EventType()
+            {
+                Title = "Sample EventType"
+            };
         }
 
         #endregion
@@ -58,6 +65,28 @@ namespace Sogeti.Capstone.Data.IntegrationTests
 
             // assert
             Context.EventType.First().Id.ShouldBe(1);
+        }
+
+        [Test]
+        public void Should_Not_Allow_Duplicate_ID()
+        {
+            // arrange
+            Context.EventType.Add(_sampleEventType);
+            Context.SaveChanges();
+
+            EventType duplicateEventType = new EventType
+            {
+                Id = 1,
+                Title = "Unique EventType"
+            };
+
+            // act
+            Context.EventType.Add(duplicateEventType);
+            Context.SaveChanges();
+            EventType correctedDuplicateEventType = Context.EventType.First(e => e.Title == "Unique EventType");
+
+            // assert
+            correctedDuplicateEventType.Id.ShouldNotBe(1);
         }
 
         [Test]

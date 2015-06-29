@@ -13,6 +13,8 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         private static readonly CapstoneContext Context =
             new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
 
+        private Category _sampleCategory;
+
         #region SetUp
 
         [TestFixtureSetUp]
@@ -25,6 +27,11 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void TestInit()
         {
             Context.RemoveAllDbSetDataDatabase();
+
+            _sampleCategory = new Category()
+            {
+                Title = "Sample Category"
+            };
         }
 
         #endregion
@@ -77,6 +84,29 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             // assert
             Context.Category.First().Id.ShouldBe(1);
         }
+
+        [Test]
+        public void Should_Not_Allow_Duplicate_ID()
+        {
+            // arrange
+            Context.Category.Add(_sampleCategory);
+            Context.SaveChanges();
+
+            Category duplicateCategory = new Category
+            {
+                Id = 1,
+                Title = "Unique Category"
+            };
+
+            // act
+            Context.Category.Add(duplicateCategory);
+            Context.SaveChanges();
+            Category correctedDuplicateCategory = Context.Category.First(e => e.Title == "Unique Category");
+
+            // assert
+            correctedDuplicateCategory.Id.ShouldNotBe(1);
+        }
+
 
         [Test]
         public void Add_Category_With_Wrong_Input()
