@@ -46,7 +46,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 EventType = new EventType(),
                 Status = new Status(),
                 LocationInformation = "At some new location",
-                LogoPath = "http://google/someimage",
+                LogoPath = "http://google/someimage"
             };
             Context.Events.Add(newEvent);
             var newRegistration = new Registration()
@@ -54,7 +54,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 Event = newEvent,
                 EventType = new EventType(),
                 RegisterDateTime = DateTime.Now,
-                Title = "A title",
+                Title = "A title"
             };
 
             //act
@@ -81,7 +81,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 EventType = new EventType(),
                 Status = new Status(),
                 LocationInformation = "At some new location",
-                LogoPath = "http://google/someimage",
+                LogoPath = "http://google/someimage"
             };
             Context.Events.Add(newEvent);
             var newRegistration = new Registration()
@@ -89,7 +89,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 Event = newEvent,
                 EventType = new EventType(),
                 RegisterDateTime = DateTime.Now,
-                Title = "A title",
+                Title = "A title"
             };
 
             // act
@@ -115,7 +115,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 EventType = new EventType(),
                 Status = new Status(),
                 LocationInformation = "At some new location",
-                LogoPath = "http://google/someimage",
+                LogoPath = "http://google/someimage"
             };
             Context.Events.Add(newEvent);
             var newRegistration = new Registration()
@@ -123,7 +123,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 Event = newEvent,
                 EventType = new EventType(),
                 RegisterDateTime = DateTime.Now,
-                Title = "A title",
+                Title = "A title"
             };
 
             //act
@@ -153,7 +153,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 EventType = new EventType(),
                 Status = new Status(),
                 LocationInformation = "At some new location",
-                LogoPath = "http://google/someimage",
+                LogoPath = "http://google/someimage"
             };
 
             Context.Events.Add(newEvent);
@@ -164,7 +164,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 Event = newEvent,
                 EventType = new EventType(),
                 RegisterDateTime = DateTime.Now,
-                Title = "A title",
+                Title = "A title"
             };
 
             //act
@@ -184,6 +184,94 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             Registration modifiedRegistration = Context.Registrations.Find(oldId);
             modifiedRegistration.Title.ShouldBe("New Title");
             modifiedRegistration.RegisterDateTime.ShouldBe(new DateTime(2015, 4, 28));
+        }
+
+        [Test]
+        public void Add_Registration_With_Existing_FK()
+        {
+            //arrange
+            var newEventType = new EventType();
+
+            Context.EventType.Add(newEventType);
+            Context.SaveChanges();
+
+            var newEvent = new Event
+            {
+                Title = "Sample Event",
+                Description = "Sample Event Description",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(1),
+                Category = new Category(),
+                Registrations = new List<Registration>(),
+                EventType = newEventType,
+                Status = new Status(),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage"
+            };
+
+            Context.Events.Add(newEvent);
+            Context.SaveChanges();
+
+            var newRegistration = new Registration()
+            {
+                Event = newEvent,
+                EventType = newEventType,
+                RegisterDateTime = DateTime.Now,
+                Title = "A title",
+            };
+
+            //act
+            Context.Registrations.Add(newRegistration);
+            Context.SaveChanges();
+
+            //assert
+            Context.Registrations.Find(1).Event.Id.ShouldBe(1);
+            Context.Registrations.Find(1).EventType.Id.ShouldBe(1);
+        }
+
+        [Test]
+        public void Add_Registration_With_Nonexistent_FK()
+        {
+            //arrange
+            var newEventType = new EventType()
+            {
+                Title = "EventType Title"
+            };
+
+            Context.EventType.Add(newEventType);
+            Context.SaveChanges();
+
+            var newEvent = new Event
+            {
+                Title = "Sample Event",
+                Description = "Sample Event Description",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(1),
+                Category = new Category(),
+                Registrations = new List<Registration>(),
+                EventType = newEventType,
+                Status = new Status(),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage"
+            };
+
+            Context.Events.Add(newEvent);
+            Context.SaveChanges();
+
+            var newRegistration = new Registration()
+            {
+                Event = newEvent,
+                EventType = newEventType,
+                RegisterDateTime = DateTime.Now,
+                Title = "A title"
+            };
+
+            //act
+            Context.Registrations.Add(newRegistration);
+            Context.SaveChanges();
+
+            //assert
+            Context.EventType.ShouldContain(newEventType);
         }
 
         [Test]
