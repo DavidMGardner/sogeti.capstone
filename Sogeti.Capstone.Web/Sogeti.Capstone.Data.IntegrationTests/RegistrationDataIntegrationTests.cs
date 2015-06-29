@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using NUnit.Framework;
 using Shouldly;
@@ -184,6 +185,20 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             modifiedRegistration.Title.ShouldBe("New Title");
             modifiedRegistration.RegisterDateTime.ShouldBe(new DateTime(2015, 4, 28));
         }
+
+        [Test]
+        public void Add_Registration_With_Wrong_Input()
+        {
+            //assert
+            Should.Throw<SqlException>(
+                () =>
+                {
+                    Context.Database.ExecuteSqlCommand(
+                    "INSERT INTO dbo.Registrations (Title, RegisterDateTime, Event_Id, EventType_Id)" +
+                    " VALUES (#4/20/2020#, 'Not a DateTime', '1', '2')");
+                });
+        }
+
 #endregion
 
     }

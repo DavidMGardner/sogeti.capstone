@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Linq;
+using System.Data.SqlClient;
 using NUnit.Framework;
 using Shouldly;
 using Sogeti.Capstone.Data.Model;
@@ -75,6 +76,18 @@ namespace Sogeti.Capstone.Data.IntegrationTests
 
             // assert
             Context.Category.First().Id.ShouldBe(1);
+        }
+
+        [Test]
+        public void Add_Category_With_Wrong_Input()
+        {
+            //assert
+            Should.Throw<SqlException>(
+                () =>
+                {
+                    Context.Database.ExecuteSqlCommand(
+                    "INSERT INTO dbo.Categories (Title) VALUES (#4/20/2020#)");
+                });
         }
 
         #endregion
