@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using NUnit.Framework;
 using Shouldly;
@@ -102,6 +103,18 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             modifiedEventType.Title.ShouldBe("New Status");
         }
 
+        [Test]
+        public void Add_EventyType_With_Wrong_Input()
+        {
+            //assert
+            Should.Throw<SqlException>(
+                () =>
+                {
+                    Context.Database.ExecuteSqlCommand(
+                    "INSERT INTO dbo.EventType (Title) VALUES (#04/29/2045#)");
+                });
+
+        }
         #endregion
     }
 }

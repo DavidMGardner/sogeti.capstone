@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using NUnit.Framework;
 using Shouldly;
@@ -101,6 +103,19 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             //assert
             Status modifiedStatus = Context.Statuses.Find(oldId);
             modifiedStatus.Title.ShouldBe("New Status");
+        }
+
+        [Test]
+        public void Add_Status_With_Wrong_Input()
+        {
+            //assert
+            Should.Throw<SqlException>(
+                () =>
+                {
+                    Context.Database.ExecuteSqlCommand(
+                    "INSERT INTO dbo.Status (Title) VALUES (#04/29/2045#)");
+                });
+
         }
 
         #endregion
