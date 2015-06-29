@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Diagnostics.Eventing.Reader;
+using System.Data;
 using System.Linq;
+using System.Data.SqlClient;
 using NUnit.Framework;
 using Shouldly;
 using Sogeti.Capstone.Data.Model;
+using EntityState = System.Data.Entity.EntityState;
 
 namespace Sogeti.Capstone.Data.IntegrationTests
 {
@@ -192,6 +193,84 @@ namespace Sogeti.Capstone.Data.IntegrationTests
 
             //assert
             Context.Events.Count().ShouldBe(0);
+        }
+
+        [Test]
+        public void Add_Event_With_Existing_FK()
+        {
+            //arrange
+            var newEventType = new EventType();
+
+            Context.EventType.Add(newEventType);
+            Context.SaveChanges();
+
+            var newEvent = new Event
+            {
+                Title = "Sample Event",
+                Description = "Sample Event Description",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(1),
+                Category = new Category(),
+                Registrations = new List<Registration>(),
+                EventType = newEventType,
+                Status = new Status(),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage",
+            };
+
+            //act
+            Context.Events.Add(newEvent);
+            Context.SaveChanges();
+
+            //assert
+            Context.Events.Find(1).EventType.Id.ShouldBe(1);
+        }
+
+        [Test]
+        public void Add_Event_With_Nonexistent_FK()
+        {
+            //arrange
+            var newEventType = new EventType()
+            {
+                Title = "EventType Title"
+            };
+
+            var newEvent = new Event
+            {
+                Title = "Sample Event",
+                Description = "Sample Event Description",
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now.AddHours(1),
+                Category = new Category(),
+                Registrations = new List<Registration>(),
+                EventType = newEventType,
+                Status = new Status(),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage",
+            };
+
+            //act
+            Context.Events.Add(newEvent);
+            Context.SaveChanges();
+
+            //assert
+            Context.EventType.ShouldContain(newEventType);
+        }
+
+        [Test]
+        public void Add_Event_With_Wrong_Input()
+        {
+            //assert
+            Should.Throw<SqlException>(
+                () =>
+                {
+                    Context.Database.ExecuteSqlCommand(
+                    "INSERT INTO dbo.Events (Title, StartDateTime, EndDateTime, Description, LogoPath," +
+                    "LocationInformation, Category_Id, EventType_Id, Status_Id) VALUES (1," +
+                    "'Not a DateTime', 'Really not a DateTime', 2, 4/20/2020," +
+                    "3, 'FK_Cat', 'FK_EventType', 'FK_Status')");
+                });
+
         }
 
         #endregion
