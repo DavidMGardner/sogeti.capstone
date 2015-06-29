@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Data.SqlClient;
 using NUnit.Framework;
@@ -16,6 +17,8 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         private static readonly CapstoneContext Context =
             new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
 
+        private Event _sampleEvent;
+        
         #region SetUp
 
         [TestFixtureSetUp]
@@ -28,17 +31,8 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void TestInit()
         {
             Context.RemoveAllDbSetDataDatabase();
-        }
 
-        #endregion
-
-        #region Tests
-
-        [Test]
-        public void Add_Event_With_Defaults()
-        {
-            // arrange
-            var newEvent = new Event
+            _sampleEvent = new Event
             {
                 Title = "Sample Event",
                 Description = "Sample Event Description",
@@ -51,9 +45,19 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 LocationInformation = "At some new location",
                 LogoPath = "http://google/someimage",
             };
+        }
+
+        #endregion
+
+        #region Tests
+
+        [Test]
+        public void Add_Event_With_Defaults()
+        {
+            // arrange
 
             // act
-            Context.Events.Add(newEvent);
+            Context.Events.Add(_sampleEvent);
             Context.SaveChanges();
 
             //assert
@@ -65,22 +69,9 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void Should_Populate_ID()
         {
             // arrange
-            var newEvent = new Event
-            {
-                Title = "Sample Event",
-                Description = "Sample Event Description",
-                StartDateTime = DateTime.Now,
-                EndDateTime = DateTime.Now.AddHours(1),
-                Category = new Category(),
-                Registrations = new List<Registration>(),
-                EventType = new EventType(),
-                Status = new Status(),
-                LocationInformation = "At some new location",
-                LogoPath = "http://google/someimage",
-            };
 
             // act
-            Context.Events.Add(newEvent);
+            Context.Events.Add(_sampleEvent);
             Context.SaveChanges();
 
             //assert
@@ -88,45 +79,35 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         }
 
         [Test]
-        public void Add_Event_With_ForeignKeys()
+        public void Should_Not_Allow_Nulls()
         {
             // arrange
-            var newEventType = new EventType();
-
-            Context.EventType.Add(newEventType);
-            Context.SaveChanges();
-
-            var newEvent = new Event
-            {
-                Title = "Sample Event",
-                Description = "Sample Event Description",
-                StartDateTime = DateTime.Now,
-                EndDateTime = DateTime.Now.AddHours(1),
-                Category = new Category(),
-                Registrations = new List<Registration>(),
-                EventType = newEventType,
-                Status = new Status(),
-                LocationInformation = "At some new location",
-                LogoPath = "http://google/someimage",
-            };
+            Event defaultEvent = new Event();
 
             // act
-            Context.Events.Add(newEvent);
-            Context.SaveChanges();
+            Context.Events.Add(defaultEvent);
 
-            //assert
-            Context.Events.Count().ShouldBeGreaterThan(0);
-            Context.Events.Find(1).ShouldBe(newEvent);
-            Context.Events.Find(1).EventType.ShouldBe(newEventType);
+            Should.Throw<DbUpdateException>(
+                () =>
+                {
+                   Context.SaveChanges();
+                });
+
+            //clean up
+            Context.Events.Local.Clear();
         }
 
         [Test]
-        public void Update_Event_From_Defaults()
+        public void Should_Not_Allow_Duplicate_ID()
         {
             // arrange
-            var newEvent = new Event
+            Context.Events.Add(_sampleEvent);
+            Context.SaveChanges();
+
+            Event duplicatEvent = new Event
             {
-                Title = "Sample Event",
+                Id = 1,
+                Title = "Unique Event",
                 Description = "Sample Event Description",
                 StartDateTime = DateTime.Now,
                 EndDateTime = DateTime.Now.AddHours(1),
@@ -138,7 +119,44 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 LogoPath = "http://google/someimage",
             };
 
-            Context.Events.Add(newEvent);
+            // act
+            Context.Events.Add(duplicatEvent);
+            Context.SaveChanges();
+            Event correctedDuplicateEvent = Context.Events.First(e => e.Title == "Unique Event");
+
+            // assert
+            correctedDuplicateEvent.Id.ShouldNotBe(1);
+        }
+
+        [Test]
+        public void Add_Event_With_ForeignKeys()
+        {
+            // arrange
+            var newEventType = new EventType()
+            {
+                Title = "new event"
+            };
+
+            Context.EventType.Add(newEventType);
+            Context.SaveChanges();
+
+            _sampleEvent.EventType = newEventType;
+
+            // act
+            Context.Events.Add(_sampleEvent);
+            Context.SaveChanges();
+
+            //assert
+            Context.Events.Count().ShouldBeGreaterThan(0);
+            Context.Events.Find(1).ShouldBe(_sampleEvent);
+            Context.Events.Find(1).EventType.ShouldBe(newEventType);
+        }
+
+        [Test]
+        public void Update_Event_From_Defaults()
+        {
+            // arrange
+            Context.Events.Add(_sampleEvent);
             Context.SaveChanges();
 
             Event oldEvent = Context.Events.First(e => e.Title == "Sample Event");
@@ -157,38 +175,28 @@ namespace Sogeti.Capstone.Data.IntegrationTests
 
             //assert
             Event modifiedEvent = Context.Events.Find(oldId);
-            modifiedEvent.Title.ShouldBe("New Title");
-            modifiedEvent.Description.ShouldBe("New Description");
-            modifiedEvent.StartDateTime.ShouldBe(new DateTime(2015, 4, 28));
-            modifiedEvent.EndDateTime.ShouldBe(new DateTime(2015, 4, 28));
-            modifiedEvent.LocationInformation.ShouldBe("none");
-            modifiedEvent.LogoPath.ShouldBe("http://fake/image");
+            modifiedEvent.ShouldSatisfyAllConditions(
+             () => modifiedEvent.Title.ShouldBe("New Title"),
+             () => modifiedEvent.Description.ShouldBe("New Description"),
+             () => modifiedEvent.StartDateTime.ShouldBe(new DateTime(2015, 4, 28)),
+             () => modifiedEvent.EndDateTime.ShouldBe(new DateTime(2015, 4, 28)),
+             () => modifiedEvent.LocationInformation.ShouldBe("none"),
+             () => modifiedEvent.LogoPath.ShouldBe("http://fake/image")
+            )
+            ;
         }
 
         [Test]
         public void Delete_Event_From_Defaults()
         {
             // arrange
-            var newEvent = new Event
-            {
-                Title = "Sample Event",
-                Description = "Sample Event Description",
-                StartDateTime = DateTime.Now,
-                EndDateTime = DateTime.Now.AddHours(1),
-                Category = new Category(),
-                Registrations = new List<Registration>(),
-                EventType = new EventType(),
-                Status = new Status(),
-                LocationInformation = "At some new location",
-                LogoPath = "http://google/someimage",
-            };
 
             // act
-            Context.Events.Add(newEvent);
+            Context.Events.Add(_sampleEvent);
             Context.SaveChanges();
 
             //act
-            Context.Events.Remove(newEvent);
+            Context.Events.Remove(_sampleEvent);
             Context.SaveChanges();
 
             //assert
@@ -204,22 +212,10 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             Context.EventType.Add(newEventType);
             Context.SaveChanges();
 
-            var newEvent = new Event
-            {
-                Title = "Sample Event",
-                Description = "Sample Event Description",
-                StartDateTime = DateTime.Now,
-                EndDateTime = DateTime.Now.AddHours(1),
-                Category = new Category(),
-                Registrations = new List<Registration>(),
-                EventType = newEventType,
-                Status = new Status(),
-                LocationInformation = "At some new location",
-                LogoPath = "http://google/someimage",
-            };
+            _sampleEvent.EventType = newEventType;
 
             //act
-            Context.Events.Add(newEvent);
+            Context.Events.Add(_sampleEvent);
             Context.SaveChanges();
 
             //assert
@@ -235,22 +231,10 @@ namespace Sogeti.Capstone.Data.IntegrationTests
                 Title = "EventType Title"
             };
 
-            var newEvent = new Event
-            {
-                Title = "Sample Event",
-                Description = "Sample Event Description",
-                StartDateTime = DateTime.Now,
-                EndDateTime = DateTime.Now.AddHours(1),
-                Category = new Category(),
-                Registrations = new List<Registration>(),
-                EventType = newEventType,
-                Status = new Status(),
-                LocationInformation = "At some new location",
-                LogoPath = "http://google/someimage",
-            };
+            _sampleEvent.EventType = newEventType;
 
             //act
-            Context.Events.Add(newEvent);
+            Context.Events.Add(_sampleEvent);
             Context.SaveChanges();
 
             //assert
