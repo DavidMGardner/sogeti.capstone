@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Sogeti.Capstone.Data.Model;
 
-namespace Sogeti.Capstone.Web
+namespace Sogeti.Capstone.Web.Controllers
 {
     public class EventsController : Controller
     {

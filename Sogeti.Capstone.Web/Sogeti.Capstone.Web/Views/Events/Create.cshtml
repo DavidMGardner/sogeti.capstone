@@ -1,79 +1,85 @@
 ﻿@model Sogeti.Capstone.Data.Model.Event
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Schedule Event";
 }
 
-<h2>Create</h2>
+<h2>Schedule New Event</h2>
+<br />
 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Event</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+    <div class="container well" style="background-color: whitesmoke; padding: 10px" >
+        <div class="row control-group">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                @Html.Label("Event Name:", htmlAttributes: new {@class = "control-label"})
+                @Html.EditorFor(model => model.Title, new {htmlAttributes = new {@class = "form-control", @required = "required", @placeholder = "Enter a title"}})
+                @Html.ValidationMessageFor(model => model.Title, "", new {@class = "text-danger"})
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StartDateTime, new { htmlAttributes = new { @class = "form-control" } })
+        <br/>
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                @Html.Label("Date:", htmlAttributes: new { @class = "control-label" })
+                <input class="form-control" type="date" name="Date" min=@DateTime.Now required />
+                @Html.ValidationMessageFor(model => model.StartDateTime, "", new { @class = "text-danger" })
+            </div>
+            <br />
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                @Html.Label("Start Time:", htmlAttributes: new { @class = "control-label" })
+                <input class="form-control" type="time" name="StartTime" min=@DateTime.Now required="required" />
                 @Html.ValidationMessageFor(model => model.StartDateTime, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EndDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EndDateTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EndDateTime, "", new { @class = "text-danger" })
+        <br />
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+                @Html.Label("End Time:", htmlAttributes: new {@class = "control-label"})
+                <input class="form-control" type="time" name="EndTime" min=@DateTime.Now required="required"/>
+                @Html.ValidationMessageFor(model => model.EndDateTime, "", new {@class = "text-danger"})
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Label("Location:", htmlAttributes: new {@class = "control-label"})
+                @Html.EditorFor(model => model.LocationInformation, new {htmlAttributes = new {@class = "form-control", @required = "required", @placeholder = "Type Location Information"}})
+                @Html.ValidationMessageFor(model => model.LocationInformation, "", new {@class = "text-danger"})
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LogoPath, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LogoPath, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LogoPath, "", new { @class = "text-danger" })
+        <br />
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                @Html.Label("Description:", htmlAttributes: new {@class = "control-label"})
+                <textarea class="form-control" type="text" name="Description" required="required" placeholder="Type a Description"> </textarea>
+                @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LocationInformation, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LocationInformation, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LocationInformation, "", new { @class = "text-danger" })
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Label("Logo Path:", htmlAttributes: new {@class = "control-label"})
+                @Html.EditorFor(model => model.LogoPath, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.LogoPath, "", new {@class = "text-danger"})
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <br />
+        <div class="row">
+            <div class="col-md-6">
+                @Html.ActionLink("Back", "Index", null, new {@class = "btn btn-default"})
+            </div>
+            <div class="col-md-5">
+            </div>
+            <div class="col-md-offset-1">
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
