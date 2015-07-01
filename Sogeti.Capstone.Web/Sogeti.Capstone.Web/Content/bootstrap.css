@@ -4928,18 +4928,13 @@ a.list-group-item.active > .badge,
 }
 
 .jumbotron {
-  height: 600px;
   padding: 30px;
   margin-bottom: 30px;
   font-size: 21px;
-  font-weight: 300;
+  font-weight: 200;
   line-height: 2.1428571435;
-  color: white;
-  text-shadow: #444 0 1px 1px;
+  color: inherit;
   background-color: #eeeeee;
-  background-image: url(/Content/Images/17180239120_1e9d504141_o-compressor.jpg);
-  background-size: cover;
-  text-align: center;
 }
 
 .jumbotron h1 {
