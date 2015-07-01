@@ -11,7 +11,7 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    <div class="container well" style="background-color: whitesmoke; padding: 10px" >
+    <div class="container well" style="background-color: whitesmoke; padding: 10px;" >
         <div class="row control-group">
             <div class="col-sm-12 col-md-12 col-lg-12">
                 @Html.Label("Event Name:", htmlAttributes: new {@class = "control-label"})
@@ -22,22 +22,16 @@
         <br/>
         <div class="row">
             <div class="col-sm-6 col-md-6 col-lg-6">
-                @Html.Label("Date:", htmlAttributes: new { @class = "control-label" })
+                @Html.Label("Date:", htmlAttributes: new { @class = "control-label", @style="max-width: 188px"})
                 <input class="form-control" type="date" name="Date" min=@DateTime.Now required />
                 @Html.ValidationMessageFor(model => model.StartDateTime, "", new { @class = "text-danger" })
             </div>
-            <br />
-            <div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="col-sm-3 col-md-3 col-lg-3">
                 @Html.Label("Start Time:", htmlAttributes: new { @class = "control-label" })
                 <input class="form-control" type="time" name="StartTime" min=@DateTime.Now required="required" />
                 @Html.ValidationMessageFor(model => model.StartDateTime, "", new { @class = "text-danger" })
             </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-sm-6">
-            </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3 col-md-3 col-lg-3">
                 @Html.Label("End Time:", htmlAttributes: new {@class = "control-label"})
                 <input class="form-control" type="time" name="EndTime" min=@DateTime.Now required="required"/>
                 @Html.ValidationMessageFor(model => model.EndDateTime, "", new {@class = "text-danger"})

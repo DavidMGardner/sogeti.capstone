@@ -4,60 +4,212 @@
     ViewBag.Title = "Events";
 }
 
-<h2>Index</h2>
+<br/>
+<div class="container">
+    
+    <h3>
+        <div class="pull-left">
+            Events
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LogoPath)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LocationInformation)
-        </th>
-        <th></th>
-    </tr>
+        </div>
+        <div class="pull-right">
+            <p>@Html.ActionLink("Create New", "Create", null, new {@class = "btn btn-default"})</p>
+        </div>
+    </h3>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDateTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDateTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LogoPath)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LocationInformation)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-primary">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Active
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body table-responsive">
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StartDateTime)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EndDateTime)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LogoPath)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LocationInformation)
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model.Where(i => i.EndDateTime > DateTime.Now).OrderByDescending(i => i.StartDateTime))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartDateTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndDateTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LogoPath)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LocationInformation)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                                @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+                                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
 
-</table>
+    <div class="panel panel-default" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    Inactive
+                </a>
+            </h4>
+        </div>
+
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body table-responsive">
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StartDateTime)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EndDateTime)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LogoPath)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LocationInformation)
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model.Where(i => i.EndDateTime < DateTime.Now).OrderByDescending(i => i.StartDateTime))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartDateTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndDateTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LogoPath)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LocationInformation)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                                @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+                                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="well">
+        <div class="pull-left">
+            <h3>Events</h3>
+        </div>
+        <div class="pull-right">
+            <p>@Html.ActionLink("Create New", "Create", null, new {@class = "btn btn-default"})</p>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartDateTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EndDateTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LogoPath)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LocationInformation)
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LogoPath)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LocationInformation)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>*@

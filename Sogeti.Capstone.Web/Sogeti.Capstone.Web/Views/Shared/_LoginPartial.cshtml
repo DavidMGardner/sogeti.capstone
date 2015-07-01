@@ -16,8 +16,23 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Events", "Index", "Events")</li>
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>
+            <a href="@Url.Action("Index", "Events")">
+                <i class="glyphicon glyphicon-list"></i>
+                <span>Events</span>
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Register", "Account", new { id = "registerLink" })">
+                <i class="glyphicon glyphicon-new-window"></i>
+                <span>Register</span>
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Login", "Account", new { id = "loginLink" })">
+                <i class="glyphicon glyphicon-log-in"></i>
+                <span>Log in</span>
+            </a>
+        </li>
     </ul>
 }
