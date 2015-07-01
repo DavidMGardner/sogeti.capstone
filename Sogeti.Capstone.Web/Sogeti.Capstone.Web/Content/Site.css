@@ -24,7 +24,7 @@ textarea {
 }
 
 .navbar-header {
-    background-color: #EF4527;
+    background-color: #E85426;
 }
 
 .navbar-brand {
@@ -36,8 +36,8 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-header > a 
 }
 
 .navbar-inverse {
-  background-color: #EF4527;
-  border-color: #EF4527;
+  background-color: #E85426;
+  border-color: #E85426;
 }
 
 .navbar-inverse .navbar-nav > li > a {
