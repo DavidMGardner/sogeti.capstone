@@ -192,6 +192,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="fonts\FontAwesome\font-awesome.min.css" />
     <Content Include="Content\Images\17180239120_1e9d504141_o-compressor.jpg" />
     <Content Include="Content\Images\Sogeti.jpg" />
     <Content Include="favicon.ico" />
@@ -200,6 +201,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\FontAwesome\FontAwesome.otf" />
+    <Content Include="fonts\FontAwesome\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome\fontawesome-webfont.ttf" />
+    <Content Include="fonts\FontAwesome\fontawesome-webfont.woff" />
+    <Content Include="fonts\FontAwesome\fontawesome-webfont.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
