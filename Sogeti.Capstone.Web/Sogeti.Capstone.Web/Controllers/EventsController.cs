@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Sogeti.Capstone.Data.Model;
+using Sogeti.Capstone.Web.ViewModel;
 
 namespace Sogeti.Capstone.Web.Controllers
 {
@@ -38,7 +39,17 @@ namespace Sogeti.Capstone.Web.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
-            return View();
+            var viewModel = new EventViewModel
+            {
+                Title = String.Empty,
+                StartDateTime = DateTime.Now,
+                EndDateTime = DateTime.Now,
+                Description = String.Empty,
+                LogoPath = String.Empty,
+                LocationInformation = String.Empty
+            };
+
+            return View(viewModel);
         }
 
         // POST: Events/Create
