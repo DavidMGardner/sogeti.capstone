@@ -1,6 +1,6 @@
 ﻿namespace Sogeti.Capstone.Web.ViewModel
 {
-    public class StatusViewModel
+    public class StatusViewModel : BaseEntityViewModel
     {
         public string Title { get; set; }
     }

@@ -2,7 +2,7 @@ using System;
 
 namespace Sogeti.Capstone.Web.ViewModel
 {
-    public class EventViewModel
+    public class EventViewModel : BaseEntityViewModel
     {
         public string Title { get; set; }
         public DateTime StartDateTime { get; set; }

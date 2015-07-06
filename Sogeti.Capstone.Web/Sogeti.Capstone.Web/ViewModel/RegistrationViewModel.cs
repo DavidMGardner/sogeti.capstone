@@ -2,7 +2,7 @@
 
 namespace Sogeti.Capstone.Web.ViewModel
 {
-    public class RegistrationViewModel
+    public class RegistrationViewModel : BaseEntityViewModel
     {
         public string Title { get; set; }
         public DateTime RegisterDateTime { get; set; }

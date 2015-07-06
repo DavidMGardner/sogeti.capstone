@@ -176,6 +176,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AssemblyHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="ViewModel\BaseEntityViewModel.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\EventTypeViewModel.cs" />
     <Compile Include="ViewModel\EventViewModel.cs" />
