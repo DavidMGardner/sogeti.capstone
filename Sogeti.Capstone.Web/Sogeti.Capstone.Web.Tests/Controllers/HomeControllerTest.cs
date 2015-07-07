@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sogeti.Capstone.Web;
 using Sogeti.Capstone.Web.Controllers;
 
 namespace Sogeti.Capstone.Web.Tests.Controllers
