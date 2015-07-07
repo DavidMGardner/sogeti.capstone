@@ -18,20 +18,7 @@ namespace Sogeti.Capstone.Web.Controllers
         // GET: Events
         public ActionResult Index()
         {
-            var viewModel = new EventViewModel
-            {
-                Title = "Sample Event",
-                Description = "Sample Event Description",
-                StartDateTime = DateTime.Now,
-                EndDateTime = DateTime.Now.AddYears(1),
-                LocationInformation = "At some new location",
-                LogoPath = "http://google/someimage",
-            };
-
-            List<EventViewModel> events = new List<EventViewModel>();
-            events.Add(viewModel);
-
-            return View(events);
+            return View();
         }
 
         // GET: Events/Details/5
