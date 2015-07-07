@@ -20,12 +20,12 @@ namespace Sogeti.Capstone.Web.Controllers
         {
             var viewModel = new EventViewModel
             {
-                Title = String.Empty,
+                Title = "Sample Event",
+                Description = "Sample Event Description",
                 StartDateTime = DateTime.Now,
-                EndDateTime = DateTime.Now,
-                Description = String.Empty,
-                LogoPath = String.Empty,
-                LocationInformation = String.Empty
+                EndDateTime = DateTime.Now.AddYears(1),
+                LocationInformation = "At some new location",
+                LogoPath = "http://google/someimage",
             };
 
             List<EventViewModel> events = new List<EventViewModel>();

@@ -71,6 +71,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CapstoneContextExtension.cs" />
     <Compile Include="StatusDataIntegrationTests.cs" />
     <Compile Include="EventTypeDataIntegrationTests.cs" />
     <Compile Include="CategoryDataIntegrationTests.cs" />
