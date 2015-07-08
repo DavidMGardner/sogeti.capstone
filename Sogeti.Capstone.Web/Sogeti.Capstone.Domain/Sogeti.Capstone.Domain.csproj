@@ -77,6 +77,8 @@
     <Compile Include="Queries\EventByIdQuery\EventByIdQueryHandler.cs" />
     <Compile Include="Queries\EventListQuery\EventListQuery.cs" />
     <Compile Include="Queries\EventListQuery\EventListQueryHandler.cs" />
+    <Compile Include="Queries\EventTypeListQuery\EventTypeListQuery.cs" />
+    <Compile Include="Queries\EventTypeListQuery\EventTypeListQueryHandler.cs" />
     <Compile Include="Registration.cs">
       <SubType>Code</SubType>
     </Compile>
