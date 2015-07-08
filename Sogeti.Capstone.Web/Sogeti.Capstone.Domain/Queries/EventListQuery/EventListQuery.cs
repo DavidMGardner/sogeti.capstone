@@ -14,6 +14,6 @@ namespace Sogeti.Capstone.Domain.Queries.EventListQuery
 
     public class EventListResult
     {
-        public List<Event> Events { get; set; }
+        public IEnumerable<Event> Events { get; set; }
     }
 }

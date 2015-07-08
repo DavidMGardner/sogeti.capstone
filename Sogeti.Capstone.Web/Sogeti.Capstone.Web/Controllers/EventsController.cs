@@ -7,8 +7,10 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Moo.Extenders;
 using ShortBus;
 using Sogeti.Capstone.Data.Model;
+using Sogeti.Capstone.Domain.Queries.EventByIdQuery;
 using Sogeti.Capstone.Domain.Queries.EventListQuery;
 using Sogeti.Capstone.Web.Application;
 using Sogeti.Capstone.Web.ViewModel;
@@ -18,17 +20,19 @@ namespace Sogeti.Capstone.Web.Controllers
     public class EventsController : BaseController
     {
         // GET: Events
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            Task<EventListResult> response = QueryAsync(new EventListQuery());
-            
-            return View();
+            EventListResult response = await QueryAsync(new EventListQuery());
+            IEnumerable<EventViewModel> viewModel = response.Events.Select(m => m.MapTo<EventViewModel>());
+
+            return View(viewModel);
         }
 
         // GET: Events/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
-            return View();
+            var viewModel = (await QueryAsync(new EventByIdQuery(id.ToString()))).MapTo<EventViewModel>();
+            return View(viewModel);
         }
 
         // GET: Events/Create
