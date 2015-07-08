@@ -20,7 +20,7 @@ namespace Sogeti.Capstone.Web.Controllers
         // GET: Events
         public ActionResult Index()
         {
-            var response = QueryAsync(new EventListQuery());
+            Task<EventListResult> response = QueryAsync(new EventListQuery());
             
             return View();
         }
