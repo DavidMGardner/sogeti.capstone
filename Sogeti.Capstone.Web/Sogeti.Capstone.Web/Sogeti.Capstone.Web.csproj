@@ -206,7 +206,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Application\BaseController.cs" />
     <Compile Include="ViewModel\BaseEntityViewModel.cs" />
-    <Compile Include="ViewModel\CategoryViewModel.cs" />
+    <Compile Include="ViewModel\RegistrationTypeViewModel.cs" />
     <Compile Include="ViewModel\EventTypeViewModel.cs" />
     <Compile Include="ViewModel\EventViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />

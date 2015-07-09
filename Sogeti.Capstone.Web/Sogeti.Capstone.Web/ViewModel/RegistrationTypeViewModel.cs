@@ -1,6 +1,6 @@
 ﻿namespace Sogeti.Capstone.Web.ViewModel
 {
-    public class CategoryViewModel : BaseEntityViewModel
+    public class RegistrationTypeViewModel : BaseEntityViewModel
     {
         public string Title { get; set; }
     }

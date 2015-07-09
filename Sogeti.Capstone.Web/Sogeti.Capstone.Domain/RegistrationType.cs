@@ -1,6 +1,6 @@
 ﻿namespace Sogeti.Capstone.Domain
 {
-    public class Category
+    public class RegistrationType
     {
         public string Title { get; set; }
     }

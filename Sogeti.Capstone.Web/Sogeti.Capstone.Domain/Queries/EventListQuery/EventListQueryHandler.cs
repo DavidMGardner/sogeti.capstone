@@ -18,7 +18,26 @@ namespace Sogeti.Capstone.Domain.Queries.EventListQuery
                     new Event()
                     {
                         Title = "Mock Title",
-                        Description = "Mock Description"
+                        Description = "Mock Description",
+                        StartDateTime = DateTime.Now,
+                        EndDateTime = DateTime.Now.AddDays(1),
+                        LocationInformation = "Mock Location",
+                        LogoPath = "//MockPath",
+                        RegistrationType = new RegistrationType(),
+                        EventType = new EventType(),
+                        Status = new Status()
+                    },
+                    new Event()
+                    {
+                        Title = "Mock Title",
+                        Description = "Mock Description",
+                        StartDateTime = DateTime.Now.AddDays(-2),
+                        EndDateTime = DateTime.Now.AddDays(-1),
+                        LocationInformation = "Mock Location",
+                        LogoPath = "//MockPath",
+                        RegistrationType = new RegistrationType(),
+                        EventType = new EventType(),
+                        Status = new Status()
                     }
                 }
             };

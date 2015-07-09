@@ -62,7 +62,7 @@
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
     <Compile Include="CapstoneContext.cs" />
-    <Compile Include="Category.cs" />
+    <Compile Include="RegistrationType.cs" />
     <Compile Include="DatabaseDataDeleter.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventType.cs" />

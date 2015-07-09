@@ -13,7 +13,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         private static readonly CapstoneContext Context =
             new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
 
-        private Category _sampleCategory;
+        private RegistrationType _sampleRegistrationType;
 
         #region SetUp
 
@@ -28,7 +28,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         {
             Context.RemoveAllDbSetDataDatabase();
 
-            _sampleCategory = new Category()
+            _sampleRegistrationType = new RegistrationType()
             {
                 Title = "Sample Category"
             };
@@ -42,7 +42,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void Add_Category_With_Defaults()
         {
             //arrange
-            var newCategory = new Category();
+            var newCategory = new RegistrationType();
 
             //act
             Context.Category.Add(newCategory);
@@ -57,7 +57,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void Delete_Category()
         {
             //arrange
-            var newCategory = new Category();
+            var newCategory = new RegistrationType();
 
             //act
             Context.Category.Add(newCategory);
@@ -75,7 +75,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void Should_Populate_ID()
         {
             // arrange
-            var newCategory = new Category();
+            var newCategory = new RegistrationType();
 
             // act
             Context.Category.Add(newCategory);
@@ -89,22 +89,22 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         public void Should_Not_Allow_Duplicate_ID()
         {
             // arrange
-            Context.Category.Add(_sampleCategory);
+            Context.Category.Add(_sampleRegistrationType);
             Context.SaveChanges();
 
-            Category duplicateCategory = new Category
+            RegistrationType duplicateRegistrationType = new RegistrationType
             {
                 Id = 1,
                 Title = "Unique Category"
             };
 
             // act
-            Context.Category.Add(duplicateCategory);
+            Context.Category.Add(duplicateRegistrationType);
             Context.SaveChanges();
-            Category correctedDuplicateCategory = Context.Category.First(e => e.Title == "Unique Category");
+            RegistrationType correctedDuplicateRegistrationType = Context.Category.First(e => e.Title == "Unique Category");
 
             // assert
-            correctedDuplicateCategory.Id.ShouldNotBe(1);
+            correctedDuplicateRegistrationType.Id.ShouldNotBe(1);
         }
 
 

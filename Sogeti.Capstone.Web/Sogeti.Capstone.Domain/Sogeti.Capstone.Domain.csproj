@@ -62,7 +62,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Category.cs">
+    <Compile Include="Queries\RegistrationTypeListQuery\RegistrationTypeListQuery.cs" />
+    <Compile Include="RegistrationType.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Event.cs">
@@ -73,6 +74,7 @@
     </Compile>
     <Compile Include="FoodType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\RegistrationTypeListQuery\RegistrationTypeListQueryHandler.cs" />
     <Compile Include="Queries\EventByIdQuery\EventByIdQuery.cs" />
     <Compile Include="Queries\EventByIdQuery\EventByIdQueryHandler.cs" />
     <Compile Include="Queries\EventListQuery\EventListQuery.cs" />
