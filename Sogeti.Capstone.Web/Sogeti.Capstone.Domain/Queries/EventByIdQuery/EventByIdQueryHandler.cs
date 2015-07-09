@@ -20,16 +20,25 @@ namespace Sogeti.Capstone.Domain.Queries.EventByIdQuery
         {
             int id = Convert.ToInt32(request.Id);
 
-            CapstoneContext context = new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
+            //CapstoneContext context = new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
 
-            var result = await context.Events.FindAsync(id);
+            //var result = await context.Events.FindAsync(id);
 
-            var outResult = new EventByIdResult
+            //var outResult = new EventByIdResult
+            //{
+            //    Event = result.MapTo<Event>()
+            //};
+
+            var response = new EventByIdResult
             {
-                Event = result.MapTo<Event>()
+                Event = new Event()
+                {
+                    Title = "Mock Title",
+                    Description = "Mock Description"
+                }
             };
 
-            return outResult;
+            return response;
         }
     }
 }

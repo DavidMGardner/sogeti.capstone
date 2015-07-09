@@ -31,7 +31,7 @@ namespace Sogeti.Capstone.Web.Controllers
         // GET: Events/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            var viewModel = (await QueryAsync(new EventByIdQuery(id.ToString()))).MapTo<EventViewModel>();
+            var viewModel = await GetEventViewModelById(id);
             return View(viewModel);
         }
 
@@ -56,15 +56,16 @@ namespace Sogeti.Capstone.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,StartDateTime,EndDateTime,Description,LogoPath,LocationInformation")] Event @event)
+        public ActionResult Create([Bind(Include = "Id,Title,StartDateTime,EndDateTime,Description,LogoPath,LocationInformation")] EventViewModel @event)
         {
             throw new NotImplementedException();
         }
 
         // GET: Events/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
-            throw new NotImplementedException();
+            var viewModel = await GetEventViewModelById(id);
+            return View(viewModel);
         }
 
         // POST: Events/Edit/5
@@ -72,16 +73,17 @@ namespace Sogeti.Capstone.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,StartDateTime,EndDateTime,Description,LogoPath,LocationInformation")] Event @event)
+        public ActionResult Edit([Bind(Include = "Id,Title,StartDateTime,EndDateTime,Description,LogoPath,LocationInformation")] EventViewModel @event)
         {
             throw new NotImplementedException();
 
         }
 
         // GET: Events/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
-            throw new NotImplementedException();
+            var viewModel = await GetEventViewModelById(id);
+            return View(viewModel);
 
         }
 
@@ -93,5 +95,12 @@ namespace Sogeti.Capstone.Web.Controllers
             throw new NotImplementedException();
 
         }
+
+        private async Task<EventViewModel> GetEventViewModelById(int? id)
+        {
+            var viewModel = (await QueryAsync(new EventByIdQuery(id.ToString()))).MapTo<EventViewModel>();
+            return viewModel;
+        }
+
     }
 }
