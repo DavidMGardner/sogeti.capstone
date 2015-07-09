@@ -15,7 +15,7 @@ namespace Sogeti.Capstone.Domain.Queries.EventListQuery
             var events = new List<Event>();
             events.Add(new Event()
                     {
-                        Title = "Mock Title",
+                        Title = "Current Title",
                         Description = "Mock Description",
                         StartDateTime = DateTime.Now,
                         EndDateTime = DateTime.Now.AddDays(1),
@@ -27,7 +27,7 @@ namespace Sogeti.Capstone.Domain.Queries.EventListQuery
                     });
             events.Add(new Event()
                     {
-                        Title = "Mock Title",
+                        Title = "Past Title",
                         Description = "Mock Description",
                         StartDateTime = DateTime.Now.AddDays(-2),
                         EndDateTime = DateTime.Now.AddDays(-1),

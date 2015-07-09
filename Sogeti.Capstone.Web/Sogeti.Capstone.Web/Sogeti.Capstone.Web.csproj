@@ -227,6 +227,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\thumbnailBlank.svg" />
     <Content Include="fonts\FontAwesome\font-awesome.min.css" />
     <Content Include="Content\Images\17180239120_1e9d504141_o-compressor.jpg" />
     <Content Include="Content\Images\Sogeti.jpg" />
@@ -294,6 +295,7 @@
     <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Events\_EventsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

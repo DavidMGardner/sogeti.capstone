@@ -1,0 +1,31 @@
+﻿
+
+@model IEnumerable<Sogeti.Capstone.Web.ViewModel.EventViewModel>
+
+<div class="row">
+    @foreach (var item in Model.OrderByDescending(i => i.StartDateTime))
+    {
+        int counter = 0;
+        if (counter != 0 && counter % 3 == 0)
+        {
+        @: </div>
+        @:<br />
+        @:<div class="row">
+        }
+
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="~/Content/Images/thumbnailBlank.svg" alt="@item.Title.ToString()" style="min-width: 100%">
+                <div class="caption">
+                    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+                    <p> @Html.DisplayFor(modelItem => item.Description)...</p>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        counter++;
+    }
+</div>

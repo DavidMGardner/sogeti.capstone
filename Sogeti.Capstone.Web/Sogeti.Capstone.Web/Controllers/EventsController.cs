@@ -24,29 +24,14 @@ namespace Sogeti.Capstone.Web.Controllers
         // GET: Events
         public async Task<ActionResult> Index(int? pageId, string searchQuery)
         {
-            const int eventsPerPage = 10;
+            const int eventsPerPage = 9;
 
-            EventListResult response = await QueryAsync(new EventListQuery());
-            IEnumerable<EventViewModel> viewModel = response.Events.Select(m => m.MapTo<EventViewModel>());
+            var viewModel = await GetEventList();
+            viewModel = FilterEventViewModels(searchQuery, viewModel);
 
-            if (!String.IsNullOrEmpty(searchQuery))
-            {
-                searchQuery = searchQuery.ToLower();
-                viewModel = viewModel.Where(s => s.Title.ToLower().Contains(searchQuery)
-                                       || s.Description.ToLower().Contains(searchQuery)
-                                       || s.LocationInformation.ToLower().Contains(searchQuery));
-            }
+            ViewBag.NumberOfPages = (int)Math.Max((viewModel.Count() / eventsPerPage), 1.0f);
 
-            ViewBag.NumberOfPages = (viewModel.Count() / eventsPerPage) + 1;
-
-            int startPage = (pageId ?? 1);
-            int startIndex = (startPage -1)*eventsPerPage;
-
-            viewModel = viewModel.OrderBy(d => d.StartDateTime);
-
-            viewModel = viewModel.Skip(startIndex);
-            viewModel = viewModel.Take(eventsPerPage);
-
+            viewModel = GetRangeEventViewModels(pageId, eventsPerPage, viewModel);
 
             return View(viewModel);
         }
@@ -71,14 +56,8 @@ namespace Sogeti.Capstone.Web.Controllers
                 LocationInformation = String.Empty
             };
 
-            RegistrationTypeListResult response = await QueryAsync(new RegistrationTypeListQuery());
-            IEnumerable<RegistrationTypeViewModel> registrationTypeViewModels = response.Categories.Select(m => m.MapTo<RegistrationTypeViewModel>());
-
-            EventTypeListResult eventTypeListResult = await QueryAsync(new EventTypeListQuery());
-            var eventTypeViewModels = eventTypeListResult.EventTypes.Select(m => m.MapTo<EventTypeViewModel>());
-
-            ViewBag.RegistrationType = registrationTypeViewModels;
-            ViewBag.EventType = eventTypeViewModels;
+            ViewBag.RegistrationType = await GetRegistrationTypes();
+            ViewBag.EventType = await GetEventTypes();
 
             return View(eventViewModel);
         }
@@ -128,11 +107,57 @@ namespace Sogeti.Capstone.Web.Controllers
 
         }
 
+
+        private static IEnumerable<EventViewModel> GetRangeEventViewModels(int? pageId, int eventsPerPage, IEnumerable<EventViewModel> viewModel)
+        {
+            int startPage = (pageId ?? 1);
+            int startIndex = (startPage - 1) * eventsPerPage;
+
+            viewModel = viewModel.OrderBy(d => d.StartDateTime);
+
+            viewModel = viewModel.Skip(startIndex);
+            viewModel = viewModel.Take(eventsPerPage);
+            return viewModel;
+        }
+
+        private static IEnumerable<EventViewModel> FilterEventViewModels(string filterQuery, IEnumerable<EventViewModel> viewModel)
+        {
+            if (!String.IsNullOrEmpty(filterQuery))
+            {
+                filterQuery = filterQuery.ToLower();
+                viewModel = viewModel.Where(s => s.Title.ToLower().Contains(filterQuery)
+                                                 || s.Description.ToLower().Contains(filterQuery)
+                                                 || s.LocationInformation.ToLower().Contains(filterQuery));
+            }
+            return viewModel;
+        }
+
+        private async Task<IEnumerable<EventViewModel>> GetEventList()
+        {
+            EventListResult response = await QueryAsync(new EventListQuery());
+            IEnumerable<EventViewModel> viewModel = response.Events.Select(m => m.MapTo<EventViewModel>());
+            return viewModel;
+        }
+
         private async Task<EventViewModel> GetEventViewModelById(int? id)
         {
             var viewModel = (await QueryAsync(new EventByIdQuery(id.ToString()))).MapTo<EventViewModel>();
             return viewModel;
         }
 
+        private async Task<IEnumerable<RegistrationTypeViewModel>> GetRegistrationTypes()
+        {
+            RegistrationTypeListResult response = await QueryAsync(new RegistrationTypeListQuery());
+            IEnumerable<RegistrationTypeViewModel> registrationTypeViewModels =
+                response.Categories.Select(m => m.MapTo<RegistrationTypeViewModel>());
+            return registrationTypeViewModels;
+        }
+
+        private async Task<IEnumerable<EventTypeViewModel>> GetEventTypes()
+        {
+            EventTypeListResult eventTypeListResult = await QueryAsync(new EventTypeListQuery());
+            var eventTypeViewModels = eventTypeListResult.EventTypes.Select(m => m.MapTo<EventTypeViewModel>());
+            return eventTypeViewModels;
+        }
     }
 }
