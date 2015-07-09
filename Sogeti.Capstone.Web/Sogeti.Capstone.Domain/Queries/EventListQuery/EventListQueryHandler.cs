@@ -18,7 +18,7 @@ namespace Sogeti.Capstone.Domain.Queries.EventListQuery
                         Title = "Current Title",
                         Description = "Mock Description",
                         StartDateTime = DateTime.Now,
-                        EndDateTime = DateTime.Now.AddDays(1),
+                        EndDateTime = DateTime.Now.AddHours(1),
                         LocationInformation = "Mock Location",
                         LogoPath = "//MockPath",
                         RegistrationType = new RegistrationType(),
@@ -43,10 +43,10 @@ namespace Sogeti.Capstone.Domain.Queries.EventListQuery
                 events.Add(
                     new Event()
                     {
-                        Title = "Sample Title",
-                        Description = "Sample Description",
-                        StartDateTime = DateTime.Now,
-                        EndDateTime = DateTime.Now.AddDays(1),
+                        Title = "Sample Title " + i,
+                        Description = "Sample Description that just continues for awhile. It has alot of words in order to represent the string in the proper format we want. Do you want to display this much information? Or stop just a hair earlier?",
+                        StartDateTime = DateTime.Now.AddHours(i+1),
+                        EndDateTime = DateTime.Now.AddDays(1).AddHours(i+1),
                         LocationInformation = "Sample Location",
                         LogoPath = "//SamplePath",
                         RegistrationType = new RegistrationType(),

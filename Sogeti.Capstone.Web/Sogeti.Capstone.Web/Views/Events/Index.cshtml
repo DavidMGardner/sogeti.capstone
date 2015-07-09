@@ -34,17 +34,11 @@
                 int pId = Convert.ToInt32(Request["pageId"]);
                 string buttonStatus = "enabled";
 
-                if (pId < 1)
-                {
-                    pId = 1;
-                }
 
                 pId--;
+                if (pId < 1) { pId = 1; }
 
-                if (pId == 0)
-                {
-                    buttonStatus = "disabled";
-                }
+                if (pId == 1) {buttonStatus = "disabled";}
 
                 @Html.ActionLink("«", "Index", new { pageId = pId }, new { @class = buttonStatus })
             }
@@ -60,6 +54,7 @@
                 int rightPid = Convert.ToInt32(Request["pageId"]);
                 string rightButtonStatus = "enabled";
 
+                if (rightPid < 1) { rightPid = 1; }
                 rightPid++;
 
                 if (rightPid == (ViewBag.NumberOfPages + 1))
