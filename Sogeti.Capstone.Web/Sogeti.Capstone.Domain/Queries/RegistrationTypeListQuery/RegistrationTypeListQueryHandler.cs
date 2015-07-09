@@ -17,14 +17,17 @@ namespace Sogeti.Capstone.Domain.Queries.RegistrationTypeListQuery
                 {
                     new RegistrationType()
                     {
+                        Id = 0,
                         Title = "Attendee"
                     },
                     new RegistrationType()
                     {
+                        Id = 1,
                         Title = "Speaker"
                     },
                     new RegistrationType()
                     {
+                        Id = 2,
                         Title = "Sponsor"
                     }
                 }

@@ -62,6 +62,19 @@
         </div>
         <br />
         <div class="row">
+            <div class="">
+
+                <br/>
+                @Html.Label("Registration Type:")
+                @Html.DropDownList("chosenRegistrationType", new SelectList(ViewBag.RegistrationType, "Id", "Title"))
+                <span></span>
+                @Html.Label("Event Type:")
+                @Html.DropDownList("chosenEventType", new SelectList(ViewBag.EventType, "Id", "Title"))<br/>
+                <br/>
+            </div>
+        </div>
+        <br />
+        <div class="row">
             <div class="pull-left col-sm-1 col-md-1 col-lg-1 ">
                 @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-default" })
             </div>

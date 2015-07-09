@@ -1,6 +1,6 @@
 ﻿namespace Sogeti.Capstone.Domain
 {
-    public class Status
+    public class Status : BaseEntity
     {
         public string Title { get; set; }
     }

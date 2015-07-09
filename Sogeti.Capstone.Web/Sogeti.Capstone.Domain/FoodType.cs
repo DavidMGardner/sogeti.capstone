@@ -1,6 +1,6 @@
 ﻿namespace Sogeti.Capstone.Domain
 {
-    public class FoodType
+    public class FoodType : BaseEntity
     {
         public string Title { get; set; }
     }

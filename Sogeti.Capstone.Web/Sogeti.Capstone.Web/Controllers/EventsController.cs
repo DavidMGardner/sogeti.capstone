@@ -12,6 +12,8 @@ using ShortBus;
 using Sogeti.Capstone.Data.Model;
 using Sogeti.Capstone.Domain.Queries.EventByIdQuery;
 using Sogeti.Capstone.Domain.Queries.EventListQuery;
+using Sogeti.Capstone.Domain.Queries.EventTypeListQuery;
+using Sogeti.Capstone.Domain.Queries.RegistrationTypeListQuery;
 using Sogeti.Capstone.Web.Application;
 using Sogeti.Capstone.Web.ViewModel;
 
@@ -20,10 +22,31 @@ namespace Sogeti.Capstone.Web.Controllers
     public class EventsController : BaseController
     {
         // GET: Events
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? pageId, string searchQuery)
         {
+            const int eventsPerPage = 10;
+
             EventListResult response = await QueryAsync(new EventListQuery());
             IEnumerable<EventViewModel> viewModel = response.Events.Select(m => m.MapTo<EventViewModel>());
+
+            if (!String.IsNullOrEmpty(searchQuery))
+            {
+                searchQuery = searchQuery.ToLower();
+                viewModel = viewModel.Where(s => s.Title.ToLower().Contains(searchQuery)
+                                       || s.Description.ToLower().Contains(searchQuery)
+                                       || s.LocationInformation.ToLower().Contains(searchQuery));
+            }
+
+            ViewBag.NumberOfPages = viewModel.Count() / eventsPerPage;
+
+            int startPage = (pageId ?? 1);
+            int startIndex = (startPage -1)*eventsPerPage;
+
+            viewModel = viewModel.OrderBy(d => d.StartDateTime);
+
+            viewModel = viewModel.Skip(startIndex);
+            viewModel = viewModel.Take(eventsPerPage);
+
 
             return View(viewModel);
         }
@@ -36,9 +59,9 @@ namespace Sogeti.Capstone.Web.Controllers
         }
 
         // GET: Events/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            var viewModel = new EventViewModel
+            var eventViewModel = new EventViewModel
             {
                 Title = String.Empty,
                 StartDateTime = DateTime.Now,
@@ -48,7 +71,16 @@ namespace Sogeti.Capstone.Web.Controllers
                 LocationInformation = String.Empty
             };
 
-            return View(viewModel);
+            RegistrationTypeListResult response = await QueryAsync(new RegistrationTypeListQuery());
+            IEnumerable<RegistrationTypeViewModel> registrationTypeViewModels = response.Categories.Select(m => m.MapTo<RegistrationTypeViewModel>());
+
+            EventTypeListResult eventTypeListResult = await QueryAsync(new EventTypeListQuery());
+            var eventTypeViewModels = eventTypeListResult.EventTypes.Select(m => m.MapTo<EventTypeViewModel>());
+
+            ViewBag.RegistrationType = registrationTypeViewModels;
+            ViewBag.EventType = eventTypeViewModels;
+
+            return View(eventViewModel);
         }
 
         // POST: Events/Create

@@ -2,7 +2,7 @@
 
 namespace Sogeti.Capstone.Domain
 {
-    public class Registration
+    public class Registration : BaseEntity
     {
         public string Title { get; set; }
         public DateTime RegisterDateTime { get; set; }

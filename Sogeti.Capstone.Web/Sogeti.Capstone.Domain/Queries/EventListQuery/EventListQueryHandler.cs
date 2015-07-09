@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +12,8 @@ namespace Sogeti.Capstone.Domain.Queries.EventListQuery
     {
         public Task<EventListResult> HandleAsync(EventListQuery request)
         {
-            var response = new EventListResult
-            {
-                Events = new List<Event>
-                {
-                    new Event()
+            var events = new List<Event>();
+            events.Add(new Event()
                     {
                         Title = "Mock Title",
                         Description = "Mock Description",
@@ -26,8 +24,8 @@ namespace Sogeti.Capstone.Domain.Queries.EventListQuery
                         RegistrationType = new RegistrationType(),
                         EventType = new EventType(),
                         Status = new Status()
-                    },
-                    new Event()
+                    });
+            events.Add(new Event()
                     {
                         Title = "Mock Title",
                         Description = "Mock Description",
@@ -38,8 +36,27 @@ namespace Sogeti.Capstone.Domain.Queries.EventListQuery
                         RegistrationType = new RegistrationType(),
                         EventType = new EventType(),
                         Status = new Status()
-                    }
-                }
+                    });
+
+            for (int i = 0; i < 25; i++)
+            {
+                events.Add(
+                    new Event()
+                    {
+                        Title = "Sample Title",
+                        Description = "Sample Description",
+                        StartDateTime = DateTime.Now,
+                        EndDateTime = DateTime.Now.AddDays(1),
+                        LocationInformation = "Sample Location",
+                        LogoPath = "//SamplePath",
+                        RegistrationType = new RegistrationType(),
+                        EventType = new EventType(),
+                        Status = new Status()
+                    });
+            }
+            var response = new EventListResult
+            {
+                Events = events
             };
 
             return Task.FromResult(response);

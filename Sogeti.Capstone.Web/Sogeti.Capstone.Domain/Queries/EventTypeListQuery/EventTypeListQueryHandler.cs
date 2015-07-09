@@ -17,12 +17,28 @@ namespace Sogeti.Capstone.Domain.Queries.EventTypeListQuery
                 {
                     new EventType()
                     {
-                        Title = "Conference"
+                        Id = 0,
+                        Title = "Seminar"
                     },
-
                     new EventType()
                     {
+                        Id = 1,
                         Title = "Social"
+                    },
+                    new EventType()
+                    {
+                        Id = 2,
+                        Title = "Meeting"
+                    },
+                    new EventType()
+                    {
+                        Id = 3,
+                        Title = "Training"
+                    },
+                    new EventType()
+                    {
+                        Id = 4,
+                        Title = "Other"
                     }
                 }
             };

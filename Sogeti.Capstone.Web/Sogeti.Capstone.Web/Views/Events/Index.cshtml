@@ -6,17 +6,24 @@
 
 <br/>
 <div class="container">
-    
+
     <h3>
         <div class="pull-left">
             Events
-
+            @Html.ActionLink("New", "Create", null, new {@class = "btn btn-primary"})
         </div>
         <div class="pull-right">
-            <p>@Html.ActionLink("Create New", "Create", null, new {@class = "btn btn-default"})</p>
+            @using (Html.BeginForm())
+            {
+                @Html.TextBox("searchQuery")
+                @Html.Hidden("searchQuery", "")
+                <input class="btn btn-warning" type="submit" value="Search"/>
+            }
         </div>
     </h3>
 </div>
+
+<br />
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-primary">
@@ -150,3 +157,25 @@
         </div>
     </div>
 </div>
+
+<nav>
+    <ul class="pagination">
+        <li>
+            @*@Html.ActionLink("&laquo;", "Index", new { pageId = Convert.ToInt32(Request["pageId"]) - 1 })*@
+            <a href="@(Convert.ToInt32(Request["pageId"]) - 1)" aria-label="Previous">
+                <span aria-hidden="false">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i < ViewBag.NumberOfPages+1; i++)
+        {
+            <li>
+                @Html.ActionLink(i.ToString(), "Index", new { pageId = i })
+            </li>
+        }
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

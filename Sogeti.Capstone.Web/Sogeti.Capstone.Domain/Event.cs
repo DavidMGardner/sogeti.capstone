@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sogeti.Capstone.Domain
 {
-    public class Event
+    public class Event : BaseEntity
     {
         public string Title { get; set; }
         public DateTime StartDateTime { get; set; }
