@@ -37,7 +37,7 @@ namespace Sogeti.Capstone.Web.Controllers
                                        || s.LocationInformation.ToLower().Contains(searchQuery));
             }
 
-            ViewBag.NumberOfPages = viewModel.Count() / eventsPerPage;
+            ViewBag.NumberOfPages = (viewModel.Count() / eventsPerPage) + 1;
 
             int startPage = (pageId ?? 1);
             int startIndex = (startPage -1)*eventsPerPage;

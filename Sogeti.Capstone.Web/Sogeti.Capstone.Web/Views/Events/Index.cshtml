@@ -161,21 +161,45 @@
 <nav>
     <ul class="pagination">
         <li>
-            @*@Html.ActionLink("&laquo;", "Index", new { pageId = Convert.ToInt32(Request["pageId"]) - 1 })*@
-            <a href="@(Convert.ToInt32(Request["pageId"]) - 1)" aria-label="Previous">
-                <span aria-hidden="false">&laquo;</span>
-            </a>
+            @{
+                int pId = Convert.ToInt32(Request["pageId"]);
+                string buttonStatus = "enabled";
+                
+                if (pId < 1)
+                {
+                    pId = 1;
+                }
+
+                pId--;
+                
+                if (pId == 0)
+                {
+                    buttonStatus = "disabled";
+                }
+                
+                @Html.ActionLink("«", "Index", new { pageId = pId }, new { @class = buttonStatus })
+            }
         </li>
-        @for (int i = 1; i < ViewBag.NumberOfPages+1; i++)
+        @for (int i = 1; i < ViewBag.NumberOfPages + 1; i++)
         {
             <li>
-                @Html.ActionLink(i.ToString(), "Index", new { pageId = i })
+                @Html.ActionLink(i.ToString(), "Index", new {pageId = i})
             </li>
         }
         <li>
-            <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
+            @{
+                int rightPid = Convert.ToInt32(Request["pageId"]);
+                string rightButtonStatus = "enabled";
+
+                rightPid++;
+                
+                if (rightPid == (ViewBag.NumberOfPages + 1))
+                {
+                    rightPid = ViewBag.NumberOfPages;
+                }
+
+                @Html.ActionLink("»", "Index", new { pageId = rightPid }, new { @class = rightButtonStatus })
+            }
         </li>
     </ul>
 </nav>
