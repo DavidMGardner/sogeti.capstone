@@ -33,7 +33,7 @@ namespace Sogeti.Capstone.Web.ViewModel
 
         [Required]
         [Display(Name = "LogoPath")]
-        [DataType(DataType.Text)]
+        [DataType(DataType.Url)]
         public string LogoPath { get; set; }
 
     }

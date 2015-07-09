@@ -15,13 +15,21 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-left">
         <li>
             <a href="@Url.Action("Index", "Events")">
-                <i class="glyphicon glyphicon-list"></i>
-                <span>Events</span>
+                <i class="glyphicon glyphicon-search"></i>
+                <span>Find Event</span>
             </a>
         </li>
+
+        <li>
+            <a href="@Url.Action("Create", "Events")">
+                <i class="glyphicon glyphicon-plus"></i>
+                <span>Create Event</span>
+            </a>
+        </li></ul>
+    <ul class="nav navbar-nav navbar-right">
         <li>
             <a href="@Url.Action("Register", "Account", new { id = "registerLink" })">
                 <i class="glyphicon glyphicon-new-window"></i>

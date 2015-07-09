@@ -48,7 +48,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
                 @Html.Label("Description:", htmlAttributes: new { @class = "control-label" })
-                <textarea class="form-control" type="text" name="Description" required="required" placeholder="Type a Description"> </textarea>
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @required = "required", @placeholder = "Type a Description" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
