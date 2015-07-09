@@ -16,8 +16,7 @@
             @using (Html.BeginForm())
             {
                 @Html.TextBox("searchQuery")
-                @Html.Hidden("searchQuery", "")
-                <input class="btn btn-warning" type="submit" value="Search"/>
+                @Html.ActionLink("Search", "Index", new { searchQuery = Request["searchQuery"]}, new { @class = "btn btn-warning" })
             }
         </div>
     </h3>
@@ -28,25 +27,23 @@
 @Html.Partial("_EventsList")
 
 <nav>
-    <ul class="pagination">
-        <li>
-            @{
-                int pId = Convert.ToInt32(Request["pageId"]);
-                string buttonStatus = "enabled";
+<ul class="pagination">
+    @{
+        int pId = Convert.ToInt32(Request["pageId"]);
+        string buttonStatus = "enabled";
+        pId--;
+        if (pId < 1) { pId = 1; }
 
-
-                pId--;
-                if (pId < 1) { pId = 1; }
-
-                if (pId == 1) {buttonStatus = "disabled";}
-
-                @Html.ActionLink("«", "Index", new { pageId = pId }, new { @class = buttonStatus })
-            }
+        if (pId == 1) { buttonStatus = "disabled"; }
+        
+        <li class="@buttonStatus">
+            @Html.ActionLink("«", "Index", new {pageId = pId, searchQuery = Request["searchQuery"]})
         </li>
+    }
         @for (int i = 1; i < ViewBag.NumberOfPages + 1; i++)
         {
             <li>
-                @Html.ActionLink(i.ToString(), "Index", new { pageId = i })
+                @Html.ActionLink(i.ToString(), "Index", new { pageId = i, searchQuery = Request["searchQuery"] })
             </li>
         }
         <li>
@@ -62,7 +59,7 @@
                     rightPid = ViewBag.NumberOfPages;
                 }
 
-                @Html.ActionLink("»", "Index", new { pageId = rightPid }, new { @class = rightButtonStatus })
+                @Html.ActionLink("»", "Index", new { pageId = rightPid, searchQuery = Request["searchQuery"] }, new { @class = rightButtonStatus })
             }
         </li>
     </ul>
