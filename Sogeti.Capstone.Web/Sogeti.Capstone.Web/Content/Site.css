@@ -90,6 +90,7 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-header > a 
 .btn-lg {
   padding: 7px 20px;
   min-width: 125px;
+    max-width: 200px;
   font-size: 15px;
   line-height: 1.33;
   border-radius: 6px;
@@ -109,4 +110,18 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-header > a 
     background-size: cover;
   text-align: center;
   border-radius: 0;
+}
+
+.thumbnail {
+    height: 550px;
+    margin-bottom: 10px;
+}
+
+.stripe {
+    
+}.vertical-center {
+     display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
 }

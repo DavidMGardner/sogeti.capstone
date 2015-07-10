@@ -6,87 +6,107 @@
 
 
 <div class="landing-hero">
-    <h1>Create an Event</h1>
-    <p>
-        <a class="btn btn-primary btn-large">
-            Schedule
-        </a>
-    </p>
+    <div class="vertical-center">
+        <h1>Create an Event</h1>
+        <br/>
+        <div>
+            <a href="" data-toggle="modal" data-target="#createModal" class="btn btn-primary btn-lg">
+                <i class="glyphicon glyphicon-log-in"></i>
+                <span>Schedule</span>
+            </a>
+        </div>
+    </div>
 </div>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="container well" style="background-color: whitesmoke; padding: 10px;">
-        <div class="row control-group">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-                @Html.Label("Event Name:", htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @required = "required", @placeholder = "Enter a title" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-6">
-                @Html.Label("Date:", htmlAttributes: new { @class = "control-label", @style = "max-width: 188px" })
-                <input class="form-control" type="date" name="Date" min=@DateTime.Now required />
-                @Html.ValidationMessageFor(model => model.StartDateTime, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-sm-3 col-md-3 col-lg-3">
-                @Html.Label("Start Time:", htmlAttributes: new { @class = "control-label" })
-                <input class="form-control" type="time" name="StartTime" min=@DateTime.Now required="required" />
-                @Html.ValidationMessageFor(model => model.StartDateTime, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-sm-3 col-md-3 col-lg-3">
-                @Html.Label("End Time:", htmlAttributes: new { @class = "control-label" })
-                <input class="form-control" type="time" name="EndTime" min=@DateTime.Now required="required" />
-                @Html.ValidationMessageFor(model => model.EndDateTime, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-                @Html.Label("Location:", htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.LocationInformation, new { htmlAttributes = new { @class = "form-control", @required = "required", @placeholder = "Type Location Information" } })
-                @Html.ValidationMessageFor(model => model.LocationInformation, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-                @Html.Label("Description:", htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @required = "required", @placeholder = "Type a Description" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-                @Html.Label("Logo Path:", htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.LogoPath, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LogoPath, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="">
 
-                <br/>
-                @Html.Label("Registration Type:")
-                @Html.DropDownList("chosenRegistrationType", new SelectList(ViewBag.RegistrationType, "Id", "Title"))
-                <span></span>
-                @Html.Label("Event Type:")
-                @Html.DropDownList("chosenEventType", new SelectList(ViewBag.EventType, "Id", "Title"))<br/>
-                <br/>
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="pull-left col-sm-1 col-md-1 col-lg-1 ">
-                @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-default" })
-            </div>
-            <div class="pull-right col-sm-11 col-md-11 col-lg-11 ">
-                <input type="submit" value="Create" class="btn btn-primary" />
+    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="createModalLabel">Create an event</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container well" style="background-color: whitesmoke; padding: 10px;">
+                        <div class="row control-group">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                @Html.Label("Event Name:", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @required = "required", @placeholder = "Enter a title" } })
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="center-block col-sm-12 col-md-12 col-lg-12">
+                                @Html.Label("Event Type:")
+                                @Html.DropDownList("chosenEventType", new SelectList(ViewBag.EventType, "Id", "Title"))<br/>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                @Html.Label("Date:", htmlAttributes: new { @class = "control-label", @style = "max-width: 188px" })
+                                <input class="form-control" type="date" name="Date" min=@DateTime.Now required />
+                                @Html.ValidationMessageFor(model => model.StartDateTime, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                @Html.Label("Start Time:", htmlAttributes: new { @class = "control-label" })
+                                <input class="form-control" type="time" name="StartTime" min=@DateTime.Now required="required" />
+                                @Html.ValidationMessageFor(model => model.StartDateTime, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                @Html.Label("End Time:", htmlAttributes: new { @class = "control-label" })
+                                <input class="form-control" type="time" name="EndTime" min=@DateTime.Now required="required" />
+                                @Html.ValidationMessageFor(model => model.EndDateTime, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                @Html.Label("Location:", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.LocationInformation, new { htmlAttributes = new { @class = "form-control", @required = "required", @placeholder = "Type Location Information" } })
+                                @Html.ValidationMessageFor(model => model.LocationInformation, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                @Html.Label("Description:", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @required = "required", @placeholder = "Type a Description" } })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                @Html.Label("Logo Path:", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.LogoPath, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LogoPath, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="center-block col-sm-12 col-md-12 col-lg-12">
+                                <br />
+                                @Html.Label("Registration Type:")
+                                @Html.DropDownList("chosenRegistrationType", new SelectList(ViewBag.RegistrationType, "Id", "Title"))
+                                <span></span>
+                                <br />
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="pull-right col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
