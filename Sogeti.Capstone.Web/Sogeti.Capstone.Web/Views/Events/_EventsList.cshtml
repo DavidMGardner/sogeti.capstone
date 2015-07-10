@@ -2,26 +2,28 @@
 
 @model IEnumerable<Sogeti.Capstone.Web.ViewModel.EventViewModel>
 
-<div class="row">
-    @foreach (var item in Model)
-    {
-        int counter = 0;
-        if (counter != 0 && counter % 3 == 0)
+<div class="container">
+
+    <div class="row">
+        @foreach (var item in Model)
         {
-        @: </div>
-        @:<br />
-        @:<div class="row">
+            int counter = 0;
+            if (counter != 0 && counter % 3 == 0)
+            {
+                @:</div>
+            @:<br />
+            @:<div class="row">
         }
 
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-                <img src="http://placehold.it/242x200" alt="@item.Title" style="min-width: 100%">
+                <img src="~/Content/Images/shutterstock_84415312-compressor.jpg" alt="@item.Title" style="min-width: 100%">
                 <div class="caption">
                     <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
                     <p>
-                         @{
-                           string parameterValue = item.Description.Substring(0, Math.Min(item.Description.Length, 100));
-                         }
+                        @{
+            string parameterValue = item.Description.Substring(0, Math.Min(item.Description.Length, 100));
+                        }
                         @Html.DisplayFor(modelItem => parameterValue) ...
                     </p>
                     <p>
@@ -31,6 +33,7 @@
             </div>
         </div>
 
-        counter++;
-    }
+            counter++;
+        }
+    </div>
 </div>

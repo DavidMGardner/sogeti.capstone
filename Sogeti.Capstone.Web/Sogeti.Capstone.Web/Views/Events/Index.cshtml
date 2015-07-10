@@ -8,10 +8,6 @@
 <div class="container">
 
     <h3>
-        <div class="pull-left">
-            Events
-            @Html.ActionLink("New", "Create", null, new {@class = "btn btn-primary"})
-        </div>
         <div class="pull-right">
             @using (Html.BeginForm())
             {
@@ -26,41 +22,53 @@
 
 @Html.Partial("_EventsList")
 
-<nav>
-<ul class="pagination">
-    @{
-        int pId = Convert.ToInt32(Request["pageId"]);
-        string buttonStatus = "enabled";
-        pId--;
-        if (pId < 1) { pId = 1; }
+<div class="container">
 
-        if (pId == 1) { buttonStatus = "disabled"; }
-        
-        <li class="@buttonStatus">
-            @Html.ActionLink("«", "Index", new {pageId = pId, searchQuery = Request["searchQuery"]})
-        </li>
-    }
-        @for (int i = 1; i < ViewBag.NumberOfPages + 1; i++)
-        {
-            <li>
-                @Html.ActionLink(i.ToString(), "Index", new { pageId = i, searchQuery = Request["searchQuery"] })
-            </li>
-        }
-        <li>
+    <nav>
+        <ul class="pagination">
             @{
-                int rightPid = Convert.ToInt32(Request["pageId"]);
-                string rightButtonStatus = "enabled";
-
-                if (rightPid < 1) { rightPid = 1; }
-                rightPid++;
-
-                if (rightPid == (ViewBag.NumberOfPages + 1))
+                int pId = Convert.ToInt32(Request["pageId"]);
+                string buttonStatus = "enabled";
+                pId--;
+                if (pId < 1)
                 {
-                    rightPid = ViewBag.NumberOfPages;
+                    pId = 1;
                 }
 
-                @Html.ActionLink("»", "Index", new { pageId = rightPid, searchQuery = Request["searchQuery"] }, new { @class = rightButtonStatus })
+                if (pId == 1)
+                {
+                    buttonStatus = "disabled";
+                }
+
+                <li class="@buttonStatus">
+                    @Html.ActionLink("«", "Index", new {pageId = pId, searchQuery = Request["searchQuery"]})
+                </li>
             }
-        </li>
-    </ul>
-</nav>
+            @for (int i = 1; i < ViewBag.NumberOfPages + 1; i++)
+            {
+                <li>
+                    @Html.ActionLink(i.ToString(), "Index", new {pageId = i, searchQuery = Request["searchQuery"]})
+                </li>
+            }
+            <li>
+                @{
+                    int rightPid = Convert.ToInt32(Request["pageId"]);
+                    string rightButtonStatus = "enabled";
+
+                    if (rightPid < 1)
+                    {
+                        rightPid = 1;
+                    }
+                    rightPid++;
+
+                    if (rightPid == (ViewBag.NumberOfPages + 1))
+                    {
+                        rightPid = ViewBag.NumberOfPages;
+                    }
+
+                    @Html.ActionLink("»", "Index", new {pageId = rightPid, searchQuery = Request["searchQuery"]}, new {@class = rightButtonStatus})
+                }
+            </li>
+        </ul>
+    </nav>
+</div>
