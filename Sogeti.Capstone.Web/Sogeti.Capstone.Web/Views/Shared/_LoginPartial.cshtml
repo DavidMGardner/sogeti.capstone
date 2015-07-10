@@ -15,29 +15,27 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-left">
+    <ul class="nav navbar-nav navbar-right">
         <li>
             <a href="@Url.Action("Index", "Events")">
                 <i class="glyphicon glyphicon-search"></i>
                 <span>Find Event</span>
             </a>
         </li>
-
         <li>
             <a href="@Url.Action("Create", "Events")">
                 <i class="glyphicon glyphicon-plus"></i>
                 <span>Create Event</span>
             </a>
-        </li></ul>
-    <ul class="nav navbar-nav navbar-right">
+        </li>
         <li>
-            <a href="@Url.Action("Register", "Account", new { id = "registerLink" })">
+            <a href="@Url.Action("Register", "Account", new {id = "registerLink"})">
                 <i class="glyphicon glyphicon-new-window"></i>
                 <span>Register</span>
             </a>
         </li>
         <li>
-            <a href="@Url.Action("Login", "Account", new { id = "loginLink" })">
+            <a href="" data-toggle="modal" data-target="#myModal">
                 <i class="glyphicon glyphicon-log-in"></i>
                 <span>Log in</span>
             </a>

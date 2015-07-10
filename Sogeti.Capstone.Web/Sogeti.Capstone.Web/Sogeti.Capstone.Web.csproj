@@ -223,10 +223,13 @@
     <Compile Include="ViewModel\FoodTypeViewModel.cs" />
     <Compile Include="ViewModel\RegistrationViewModel.cs" />
     <Compile Include="ViewModel\StatusViewModel.cs" />
+    <Compile Include="ViewModel\UserLoginViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\business meeting hand shake-min.jpg" />
     <Content Include="Content\Images\thumbnailBlank.svg" />
     <Content Include="fonts\FontAwesome\font-awesome.min.css" />
     <Content Include="Content\Images\17180239120_1e9d504141_o-compressor.jpg" />
@@ -296,9 +299,11 @@
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Events\_EventsList.cshtml" />
+    <Content Include="Views\Shared\_LoginViewPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

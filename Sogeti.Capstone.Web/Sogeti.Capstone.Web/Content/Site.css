@@ -95,4 +95,19 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-header > a 
   border-radius: 6px;
   font-weight: bold;
     margin-bottom: 10px;
-} 
+}
+
+.landing-hero {
+  height: 600px;
+  margin-bottom: 0;
+  padding: 30px;
+  font-size: 21px;
+  font-weight: 300;
+  line-height: 2.1428571435;
+  color: white;
+  background-color: #eeeeee;
+  background-image: url('Images/business meeting hand shake-min.jpg');
+    background-size: cover;
+  text-align: center;
+  border-radius: 0;
+}

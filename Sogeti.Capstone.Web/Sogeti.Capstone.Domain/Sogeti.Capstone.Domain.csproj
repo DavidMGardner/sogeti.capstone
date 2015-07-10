@@ -64,6 +64,8 @@
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Queries\RegistrationTypeListQuery\RegistrationTypeListQuery.cs" />
+    <Compile Include="Queries\UserByIdQuery\UserByIdQuery.cs" />
+    <Compile Include="Queries\UserByIdQuery\UserByIdQueryHandler.cs" />
     <Compile Include="RegistrationType.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -88,6 +90,7 @@
     <Compile Include="Status.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
