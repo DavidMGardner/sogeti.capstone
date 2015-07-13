@@ -1,0 +1,15 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Sogeti.Capstone.Api</id>
+    <title>Sogeti.Capstone.Api</title>
+    <version>1.0.0</version>
+    <authors>Sogeti Team</authors>
+    <owners>Dave Gardner, Sogeti Team</owners>
+    <licenseUrl>http://www.sogeti.com</licenseUrl>
+    <projectUrl>https://github.com/DavidMGardner/sogeti.capstone</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Sogeti.Capstone.Web Reference CI/CD Application</description>
+    <releaseNotes></releaseNotes>
+  </metadata>
+</package>
