@@ -301,6 +301,7 @@
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Events\_EventsList.cshtml" />
     <Content Include="Views\Shared\_LoginViewPartial.cshtml" />
+    <Content Include="Views\Events\_DetailsPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -40,7 +40,7 @@ namespace Sogeti.Capstone.Web.Controllers
         public async Task<ActionResult> Details(int? id)
         {
             var viewModel = await GetEventViewModelById(id);
-            return View(viewModel);
+            return PartialView("_DetailsPartialView", viewModel);
         }
 
         // GET: Events/Create
@@ -107,7 +107,6 @@ namespace Sogeti.Capstone.Web.Controllers
 
         }
 
-
         private static IEnumerable<EventViewModel> GetRangeEventViewModels(int? pageId, int eventsPerPage, IEnumerable<EventViewModel> viewModel)
         {
             int startPage = (pageId ?? 1);
@@ -141,7 +140,8 @@ namespace Sogeti.Capstone.Web.Controllers
 
         private async Task<EventViewModel> GetEventViewModelById(int? id)
         {
-            var viewModel = (await QueryAsync(new EventByIdQuery(id.ToString()))).MapTo<EventViewModel>();
+            EventByIdResult response = await QueryAsync(new EventByIdQuery(id.ToString()));
+            var viewModel = response.Event.MapTo<EventViewModel>();
             return viewModel;
         }
 

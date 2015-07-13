@@ -118,8 +118,18 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-header > a 
 }
 
 .stripe {
-    
-}.vertical-center {
+  height: 300px;
+  margin-bottom: 0;
+    padding: 30px 0 0;
+  font-weight: 300;
+  line-height: 2.1428571435;
+  color: white;
+  background-color: #353e48;
+    background-size: cover;
+  text-align: center;
+  border-radius: 0;
+}
+.vertical-center {
      display: flex;
   justify-content: center;
   flex-direction: column;

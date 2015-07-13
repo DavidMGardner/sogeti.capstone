@@ -15,6 +15,7 @@ namespace Sogeti.Capstone.Domain.Queries.EventListQuery
             var events = new List<Event>();
             events.Add(new Event()
                     {
+                        Id = 0,
                         Title = "Current Title",
                         Description = "Mock Description",
                         StartDateTime = DateTime.Now,
@@ -26,7 +27,8 @@ namespace Sogeti.Capstone.Domain.Queries.EventListQuery
                         Status = new Status()
                     });
             events.Add(new Event()
-                    {
+            {
+                Id = 1,
                         Title = "Past Title",
                         Description = "Mock Description",
                         StartDateTime = DateTime.Now.AddDays(-2),
@@ -38,11 +40,12 @@ namespace Sogeti.Capstone.Domain.Queries.EventListQuery
                         Status = new Status()
                     });
 
-            for (int i = 0; i < 25; i++)
+            for (int i = 2; i < 25; i++)
             {
                 events.Add(
                     new Event()
                     {
+                        Id = i,
                         Title = "Sample Title " + i,
                         Description = "Sample Description that just continues for awhile. It has alot of words in order to represent the string in the proper format we want. Do you want to display this much information? Or stop just a hair earlier?",
                         StartDateTime = DateTime.Now.AddHours(i+1),

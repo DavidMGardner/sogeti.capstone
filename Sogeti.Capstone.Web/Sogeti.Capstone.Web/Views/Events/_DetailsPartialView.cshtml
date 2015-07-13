@@ -1,0 +1,66 @@
+﻿@model Sogeti.Capstone.Web.ViewModel.EventViewModel
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="detailsModalLabel">@Model.Title</h4>
+    </div>
+    <div class="modal-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDateTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StartDateTime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EndDateTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EndDateTime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LogoPath)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LogoPath)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LocationInformation)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LocationInformation)
+            </dd>
+        </dl>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Register" class="btn btn-primary"/>
+            </div>
+        </div>
+    </div>
+</div>

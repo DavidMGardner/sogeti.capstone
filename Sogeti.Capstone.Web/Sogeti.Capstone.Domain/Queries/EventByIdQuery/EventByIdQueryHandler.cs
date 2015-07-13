@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Moo.Extenders;
 using ShortBus;
 using Sogeti.Capstone.Data.Model;
+using Sogeti.Capstone.Domain.Queries.EventListQuery;
 
 namespace Sogeti.Capstone.Domain.Queries.EventByIdQuery
 {
@@ -21,7 +22,10 @@ namespace Sogeti.Capstone.Domain.Queries.EventByIdQuery
             int id = Convert.ToInt32(request.Id);
 
             //CapstoneContext context = new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
+            var eventListQueryHandler = new EventListQueryHandler().HandleAsync(new EventListQuery.EventListQuery());
+            IEnumerable<Event> events = eventListQueryHandler.Result.Events;
 
+            var result = events.First(e => e.Id == id);
             //var result = await context.Events.FindAsync(id);
 
             //var outResult = new EventByIdResult
@@ -29,13 +33,17 @@ namespace Sogeti.Capstone.Domain.Queries.EventByIdQuery
             //    Event = result.MapTo<Event>()
             //};
 
-            var response = new EventByIdResult
+            //var response = new EventByIdResult
+            //{
+            //    Event = new Event()
+            //    {
+            //        Title = "Mock Title",
+            //        Description = "Mock Description"
+            //    }
+            //};
+            var response = new EventByIdResult()
             {
-                Event = new Event()
-                {
-                    Title = "Mock Title",
-                    Description = "Mock Description"
-                }
+                Event = result
             };
 
             return response;
