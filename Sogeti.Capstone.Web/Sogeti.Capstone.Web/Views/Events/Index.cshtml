@@ -19,13 +19,16 @@
 
 <br />
 
-@Html.Partial("_EventsList")
+<div class="container" id="eventsPartial">
+    @Html.Partial("_EventsList")
+</div>
 
-<div class="container">
+<div class="container" id="loadingDiv"></div>
 
-    <nav>
-        <ul class="pagination">
-            @{
+@*<div class="container">
+        <nav>
+            <ul class="pagination">
+                @{
                 int pId = Convert.ToInt32(Request["pageId"]);
                 string buttonStatus = "enabled";
                 pId--;
@@ -39,18 +42,18 @@
                     buttonStatus = "disabled";
                 }
 
-                <li class="@buttonStatus">
-                    @Html.ActionLink("«", "Index", new {pageId = pId, searchQuery = Request["searchQuery"]})
-                </li>
-            }
-            @for (int i = 1; i < ViewBag.NumberOfPages + 1; i++)
+            <li class="@buttonStatus">
+                @Html.ActionLink("«", "Index", new {pageId = pId, searchQuery = Request["searchQuery"]})
+            </li>
+                }
+                @for (int i = 1; i < ViewBag.NumberOfPages + 1; i++)
             {
-                <li>
-                    @Html.ActionLink(i.ToString(), "Index", new {pageId = i, searchQuery = Request["searchQuery"]})
-                </li>
-            }
             <li>
-                @{
+                @Html.ActionLink(i.ToString(), "Index", new {pageId = i, searchQuery = Request["searchQuery"]})
+            </li>
+            }
+                <li>
+                    @{
                     int rightPid = Convert.ToInt32(Request["pageId"]);
                     string rightButtonStatus = "enabled";
 
@@ -65,9 +68,50 @@
                         rightPid = ViewBag.NumberOfPages;
                     }
 
-                    @Html.ActionLink("»", "Index", new {pageId = rightPid, searchQuery = Request["searchQuery"]}, new {@class = rightButtonStatus})
-                }
-            </li>
-        </ul>
-    </nav>
+                @Html.ActionLink("»", "Index", new {pageId = rightPid, searchQuery = Request["searchQuery"]}, new {@class = rightButtonStatus})
+                    }
+                </li>
+            </ul>
+        </nav>
+    </div>*@
+
+<div class="modal fade form-horizontal" id="details-event" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel">
+    <div id="details-event-container" class="modal-dialog" role="document"></div>
 </div>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('body').on('click', '#details-modal', function() {
+            var id = $(this).attr('data-id'); // the id that's given to each button in the list
+            var viewUrl = '/Events/Details/' + id;
+            $.get(viewUrl, function(data) {
+                $('#details-event-container').html(data);
+                $('#details-event').modal('show');
+            });
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    var page = 1;
+    var _isLoading = false;
+    $(window).scroll(function () {
+        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+            if (page > 0 && !_isLoading) {
+                _isLoading = true;
+                page++;
+                $("#loadingDiv").html("loading...");
+                $.get('/Events?pageId=' + page + '&searchQuery=' + '@Request["searchQuery"]', function (data) {
+                    if (data != '') {
+                        $("#eventsPartial").append(data);
+                    } else {
+                        page = 0;
+                    }
+                    _isLoading = false;
+                    $("#loadingDiv").empty();
+                });
+            }
+        }
+    });
+</script>

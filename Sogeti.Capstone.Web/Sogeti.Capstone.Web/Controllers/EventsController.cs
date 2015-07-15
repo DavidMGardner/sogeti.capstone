@@ -30,10 +30,16 @@ namespace Sogeti.Capstone.Web.Controllers
             viewModel = FilterEventViewModels(searchQuery, viewModel);
 
             ViewBag.NumberOfPages = (int)Math.Max((viewModel.Count() / eventsPerPage), 1.0f);
-
             viewModel = GetRangeEventViewModels(pageId, eventsPerPage, viewModel);
 
-            return View(viewModel);
+            if (Request.IsAjaxRequest())
+            {
+                if (viewModel.Any())
+                    return PartialView("_EventsList", viewModel);
+                return new EmptyResult();
+            }
+
+            return View("Index", viewModel);
         }
 
         // GET: Events/Details/5

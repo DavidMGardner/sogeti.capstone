@@ -205,6 +205,7 @@
     <Compile Include="AssemblyHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Application\BaseController.cs" />
+    <Compile Include="Models\UserController.cs" />
     <Compile Include="ViewModel\BaseEntityViewModel.cs" />
     <Compile Include="ViewModel\RegistrationTypeViewModel.cs" />
     <Compile Include="ViewModel\EventTypeViewModel.cs" />
@@ -302,10 +303,10 @@
     <Content Include="Views\Events\_EventsList.cshtml" />
     <Content Include="Views\Shared\_LoginViewPartial.cshtml" />
     <Content Include="Views\Events\_DetailsPartialView.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
