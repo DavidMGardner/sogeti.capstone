@@ -47,6 +47,7 @@ namespace Sogeti.Capstone.Web
                     scanner.LookForRegistries();
 
                     scanner.Assembly("Sogeti.Capstone.Domain");
+                    scanner.Assembly("Sogeti.Capstone.Core");
 
                     scanner.WithDefaultConventions();
                     scanner.TheCallingAssembly();
@@ -55,7 +56,7 @@ namespace Sogeti.Capstone.Web
                     scanner.AddAllTypesOf(typeof(INotificationHandler<>));
                     scanner.AddAllTypesOf(typeof(IAsyncNotificationHandler<>));
                 });
-                init.Policies.SetAllProperties(x => x.OfType<Application.IMediator>());
+                init.Policies.SetAllProperties(x => x.OfType<Sogeti.Capstone.Core.IMediator>());
             });
 
             //var controllerFactory = new StructureMapControllerFactory(ObjectFactory.Container);

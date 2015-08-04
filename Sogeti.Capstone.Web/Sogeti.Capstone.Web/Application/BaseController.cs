@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using ShortBus;
-using ShortBus.StructureMap;
 using StructureMap;
+using IMediator = Sogeti.Capstone.Core.IMediator;
 
 namespace Sogeti.Capstone.Web.Application
 {

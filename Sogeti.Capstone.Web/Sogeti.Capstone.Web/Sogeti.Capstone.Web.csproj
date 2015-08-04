@@ -193,9 +193,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\ControllerActivator.cs" />
-    <Compile Include="Application\Mediator.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -316,6 +313,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sogeti.Capstone.Core\Sogeti.Capstone.Core.csproj">
+      <Project>{5a22537a-f3d3-4337-9031-59b545558102}</Project>
+      <Name>Sogeti.Capstone.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sogeti.Capstone.Data.Model\Sogeti.Capstone.Data.Model.csproj">
       <Project>{e3e7e4dd-5bcc-45b2-9f09-00ed99d359db}</Project>
       <Name>Sogeti.Capstone.Data.Model</Name>
