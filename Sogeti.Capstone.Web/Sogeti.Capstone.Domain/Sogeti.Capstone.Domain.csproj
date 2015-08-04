@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="Commands\CreateEvent\CreateEvent.cs" />
+    <Compile Include="Commands\CreateEvent\CreateEventHandler.cs" />
     <Compile Include="Queries\RegistrationTypeListQuery\RegistrationTypeListQuery.cs" />
     <Compile Include="Queries\UserByIdQuery\UserByIdQuery.cs" />
     <Compile Include="Queries\UserByIdQuery\UserByIdQueryHandler.cs" />
@@ -102,9 +104,7 @@
       <Name>Sogeti.Capstone.Data.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

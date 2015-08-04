@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sogeti.Capstone.Data.Integr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sogeti.Capstone.Domain", "Sogeti.Capstone.Domain\Sogeti.Capstone.Domain.csproj", "{AB1F84FA-6501-4BA3-9770-9E3E62A39911}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sogeti.Capstone.CQS.Integration.Tests", "Sogeti.Capstone.CQS.Integration.Tests\Sogeti.Capstone.CQS.Integration.Tests.csproj", "{557BC7BD-0F77-487C-96B4-5E4D8EEA1AF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{AB1F84FA-6501-4BA3-9770-9E3E62A39911}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB1F84FA-6501-4BA3-9770-9E3E62A39911}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB1F84FA-6501-4BA3-9770-9E3E62A39911}.Release|Any CPU.Build.0 = Release|Any CPU
+		{557BC7BD-0F77-487C-96B4-5E4D8EEA1AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{557BC7BD-0F77-487C-96B4-5E4D8EEA1AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{557BC7BD-0F77-487C-96B4-5E4D8EEA1AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{557BC7BD-0F77-487C-96B4-5E4D8EEA1AF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,5 +76,6 @@ Global
 		{E3E7E4DD-5BCC-45B2-9F09-00ED99D359DB} = {B140E7AB-99EF-49C2-9CDB-847CA158BFC4}
 		{E122875C-A8E4-4AE9-93EB-8DCFDA8BC2D3} = {7C113692-2AFC-4FD2-9572-8F2E1839CAD0}
 		{AB1F84FA-6501-4BA3-9770-9E3E62A39911} = {850A31CF-5A01-4B1E-985A-E71FA3BEC650}
+		{557BC7BD-0F77-487C-96B4-5E4D8EEA1AF6} = {7C113692-2AFC-4FD2-9572-8F2E1839CAD0}
 	EndGlobalSection
 EndGlobal
