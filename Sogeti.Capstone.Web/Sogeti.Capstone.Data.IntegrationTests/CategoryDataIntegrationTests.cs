@@ -26,7 +26,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         [SetUp]
         public void TestInit()
         {
-            Context.RemoveAllDbSetDataDatabase();
+            Context.DeleteAllDbSetData();
 
             _sampleRegistrationType = new RegistrationType()
             {

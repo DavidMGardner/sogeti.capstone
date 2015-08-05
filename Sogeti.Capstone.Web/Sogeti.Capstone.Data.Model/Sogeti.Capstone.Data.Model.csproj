@@ -62,6 +62,8 @@
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
     <Compile Include="CapstoneContext.cs" />
+    <Compile Include="CapstoneContextExtension.cs" />
+    <Compile Include="IntegrationTestDatabaseInitalizer.cs" />
     <Compile Include="RegistrationType.cs" />
     <Compile Include="DatabaseDataDeleter.cs" />
     <Compile Include="Event.cs" />

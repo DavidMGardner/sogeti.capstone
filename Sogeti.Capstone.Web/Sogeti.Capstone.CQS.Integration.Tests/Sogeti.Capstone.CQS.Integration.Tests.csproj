@@ -38,6 +38,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -63,6 +71,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -91,6 +100,10 @@
     <ProjectReference Include="..\Sogeti.Capstone.Core\Sogeti.Capstone.Core.csproj">
       <Project>{5a22537a-f3d3-4337-9031-59b545558102}</Project>
       <Name>Sogeti.Capstone.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sogeti.Capstone.Data.Model\Sogeti.Capstone.Data.Model.csproj">
+      <Project>{e3e7e4dd-5bcc-45b2-9f09-00ed99d359db}</Project>
+      <Name>Sogeti.Capstone.Data.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sogeti.Capstone.Domain\Sogeti.Capstone.Domain.csproj">
       <Project>{AB1F84FA-6501-4BA3-9770-9E3E62A39911}</Project>

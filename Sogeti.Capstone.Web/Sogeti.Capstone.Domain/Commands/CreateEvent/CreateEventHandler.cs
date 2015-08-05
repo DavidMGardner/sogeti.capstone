@@ -17,14 +17,12 @@ namespace Sogeti.Capstone.Domain.Commands.CreateEvent
         
         public async Task<CreateEventResult> HandleAsync(CreateEvent request)
         {
-            //var dataModel = request.MapTo<Sogeti.Capstone.Data.Model.Event>();
-            //var repsonse = Context.Events.Add(dataModel);
+            var dataModel = request.MapTo<Sogeti.Capstone.Data.Model.Event>();
+            var repsonse = Context.Events.Add(dataModel);
 
-            //await Context.SaveChangesAsync(); 
+            await Context.SaveChangesAsync();
 
-            //return new CreateEventResult { Id = repsonse.Id};
-
-            return new CreateEventResult { Id = 1 };
+            return new CreateEventResult { Id = repsonse.Id };
         }
     }
 }

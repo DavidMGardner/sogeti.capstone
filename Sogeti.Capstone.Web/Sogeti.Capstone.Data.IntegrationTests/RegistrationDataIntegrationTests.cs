@@ -27,7 +27,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         [SetUp]
         public void TestInit()
         {
-            Context.RemoveAllDbSetDataDatabase();
+            Context.DeleteAllDbSetData();
 
             var newEvent = new Event
             {

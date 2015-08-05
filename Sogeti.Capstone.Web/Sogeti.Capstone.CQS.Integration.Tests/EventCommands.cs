@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using Shouldly;
 using Sogeti.Capstone.Core;
+using Sogeti.Capstone.Data.Model;
 using Sogeti.Capstone.Domain.Commands.CreateEvent;
 
 
@@ -13,13 +14,16 @@ namespace Sogeti.Capstone.CQS.Integration.Tests
     [TestClass]
     public class EventCommands
     {
+        private static readonly CapstoneContext Context =
+           new CapstoneContext("Sogeti.Capstone.Data.Model.CapstoneContext");
+        
         [TestFixtureSetUp]
         public void Init()
         {
-            
+            IntegrationTestDatabaseInitalizer.AssemblyInit(Context);
         }
         
-        [TestMethod]
+        [Test]
         public async Task CreateEventCommand()
         {
             // Arrange

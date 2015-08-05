@@ -1,13 +1,13 @@
 ﻿using System.Data.Entity;
 using Sogeti.Capstone.Data.Model;
 
-namespace Sogeti.Capstone.Data.IntegrationTests
+namespace Sogeti.Capstone.Core
 {
     public static class CapstoneContextExtension
     {
         public static void RemoveAllDbSetDataDatabase(this CapstoneContext context)
         {
-            DatabaseDataDeleter dataDeleter = new DatabaseDataDeleter(context);
+            var dataDeleter = new DatabaseDataDeleter(context);
 
             RemoveDbSetData(context.Events);
             RemoveDbSetData(context.EventType);
@@ -21,7 +21,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
 
         public static void RemoveDbSetDataDatabase(this CapstoneContext context, DbSet set)
         {
-            DatabaseDataDeleter dataDeleter = new DatabaseDataDeleter(context);
+            var dataDeleter = new DatabaseDataDeleter(context);
 
             RemoveDbSetData(set);
             context.SaveChanges();

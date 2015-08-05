@@ -46,15 +46,18 @@ namespace Sogeti.Capstone.Data.Model
 
         static string BuildTableSql(IEnumerable<string> tablesToDelete)
         {
-            string sql = tablesToDelete.Aggregate(string.Empty, (current, tableName) =>
+            var toDelete = tablesToDelete as string[] ?? tablesToDelete.ToArray();
+
+            string sql = toDelete.Aggregate(string.Empty, (current, tableName) =>
                         current + string.Format("delete from [{0}];", tableName));
-            sql += tablesToDelete.Aggregate(String.Empty, (current, tableName) =>
+            
+            sql += toDelete.Aggregate(String.Empty, (current, tableName) =>
                 current + string.Format("IF EXISTS (SELECT 1 FROM sys.identity_columns WHERE [object_id] = OBJECT_ID(N'{0}', N'U') "
                          + "AND last_value IS NOT NULL) BEGIN DBCC CHECKIDENT('{0}', 'RESEED', 0) END;", tableName));
             return sql;
         }
 
-        static string[] BuildTableList(ICollection<string> allTables, ICollection<Relationship> allRelationships)
+        static IEnumerable<string> BuildTableList(ICollection<string> allTables, ICollection<Relationship> allRelationships)
         {
             var tablesToDelete = new List<string>();
 
@@ -79,15 +82,15 @@ namespace Sogeti.Capstone.Data.Model
         {
             const string sql =
                 @"select
-	so_pk.name as PrimaryKeyTable
-,   so_fk.name as ForeignKeyTable
-from
-	sysforeignkeys sfk
-	  inner join sysobjects so_pk on sfk.rkeyid = so_pk.id
-	  inner join sysobjects so_fk on sfk.fkeyid = so_fk.id
-order by
-	so_pk.name
-,   so_fk.name";
+	                so_pk.name as PrimaryKeyTable
+                ,   so_fk.name as ForeignKeyTable
+                from
+	                sysforeignkeys sfk
+	                  inner join sysobjects so_pk on sfk.rkeyid = so_pk.id
+	                  inner join sysobjects so_fk on sfk.fkeyid = so_fk.id
+                order by
+	                so_pk.name
+                ,   so_fk.name";
 
             return _dbContext.Database.SqlQuery<Relationship>(sql).ToList();
         }

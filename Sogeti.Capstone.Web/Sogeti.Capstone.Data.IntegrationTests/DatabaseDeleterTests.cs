@@ -26,7 +26,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
         [SetUp]
         public void TestInit()
         {
-            Context.RemoveAllDbSetDataDatabase();
+            Context.DeleteAllDbSetData();
         }
 
         #endregion
@@ -39,7 +39,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             //arrange
 
             //act
-            Context.RemoveAllDbSetDataDatabase();
+            Context.DeleteAllDbSetData();
 
             //assert
             Context.Database.ShouldBeOfType<Database>();
@@ -67,7 +67,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             Context.Events.Add(newEvent);
             Context.SaveChanges();
 
-            Context.RemoveDbSetDataDatabase(Context.Events);
+            Context.DeleteDataFromDbSet(Context.Events);
 
             //assert
             Context.Events.Count().ShouldBe(0);
@@ -87,7 +87,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             Context.EventType.Add(newEventType);
             Context.SaveChanges();
 
-            Context.RemoveDbSetDataDatabase(Context.EventType);
+            Context.DeleteDataFromDbSet(Context.EventType);
 
             Context.EventType.Add(newEventType);
             Context.SaveChanges();
@@ -119,7 +119,7 @@ namespace Sogeti.Capstone.Data.IntegrationTests
             Context.Events.Add(newEvent);
             Context.SaveChanges();
 
-            Context.RemoveAllDbSetDataDatabase();
+            Context.DeleteAllDbSetData();
 
             //assert
             Context.Events.Count().ShouldBe(0);
