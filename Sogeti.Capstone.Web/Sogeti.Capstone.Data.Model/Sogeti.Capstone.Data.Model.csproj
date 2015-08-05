@@ -64,6 +64,10 @@
     <Compile Include="CapstoneContext.cs" />
     <Compile Include="CapstoneContextExtension.cs" />
     <Compile Include="IntegrationTestDatabaseInitalizer.cs" />
+    <Compile Include="Migrations\201508051748139_Third.cs" />
+    <Compile Include="Migrations\201508051748139_Third.Designer.cs">
+      <DependentUpon>201508051748139_Third.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegistrationType.cs" />
     <Compile Include="DatabaseDataDeleter.cs" />
     <Compile Include="Event.cs" />
@@ -92,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506261606354_second.resx">
       <DependentUpon>201506261606354_second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508051748139_Third.resx">
+      <DependentUpon>201508051748139_Third.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
