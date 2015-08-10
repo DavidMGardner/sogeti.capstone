@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="Commands\CreateEventType\CreateEventType.cs" />
+    <Compile Include="Commands\CreateEventType\CreateEventTypeHandler.cs" />
     <Compile Include="Commands\CreateEvent\CreateEvent.cs" />
     <Compile Include="Commands\CreateEvent\CreateEventHandler.cs" />
     <Compile Include="Commands\CreateRegistrationType\CreateRegistrationType.cs" />
