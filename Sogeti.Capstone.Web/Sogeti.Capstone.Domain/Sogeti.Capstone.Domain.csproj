@@ -65,6 +65,8 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Commands\CreateEvent\CreateEvent.cs" />
     <Compile Include="Commands\CreateEvent\CreateEventHandler.cs" />
+    <Compile Include="Commands\CreateRegistrationType\CreateRegistrationType.cs" />
+    <Compile Include="Commands\CreateRegistrationType\CreateRegistrationTypeHandler.cs" />
     <Compile Include="Queries\RegistrationTypeListQuery\RegistrationTypeListQuery.cs" />
     <Compile Include="Queries\UserByIdQuery\UserByIdQuery.cs" />
     <Compile Include="Queries\UserByIdQuery\UserByIdQueryHandler.cs" />
