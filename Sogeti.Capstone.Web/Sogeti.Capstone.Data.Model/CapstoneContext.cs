@@ -26,6 +26,7 @@ namespace Sogeti.Capstone.Data.Model
         public DbSet<RegistrationType> Category { get; set; }
         public DbSet<Registration> Registrations { get; set; }
         public DbSet<Status> Statuses { get; set; }
+        public DbSet<FoodType> FoodType { get; set; }
 
     }
 }
