@@ -9,7 +9,7 @@ namespace Sogeti.Capstone.Data.Model.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(Sogeti.Capstone.Data.Model.CapstoneContext context)

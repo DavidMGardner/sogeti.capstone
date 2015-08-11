@@ -109,6 +109,7 @@
     <Compile Include="FoodTypeCommands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrationTypeCommands.cs" />
+    <Compile Include="StatusCommands.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

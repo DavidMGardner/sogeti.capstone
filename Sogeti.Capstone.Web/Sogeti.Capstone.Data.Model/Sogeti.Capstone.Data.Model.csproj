@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201508051748139_Third.Designer.cs">
       <DependentUpon>201508051748139_Third.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508111647010_fourth.cs" />
+    <Compile Include="Migrations\201508111647010_fourth.Designer.cs">
+      <DependentUpon>201508111647010_fourth.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegistrationType.cs" />
     <Compile Include="DatabaseDataDeleter.cs" />
     <Compile Include="Event.cs" />
@@ -99,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508051748139_Third.resx">
       <DependentUpon>201508051748139_Third.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508111647010_fourth.resx">
+      <DependentUpon>201508111647010_fourth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

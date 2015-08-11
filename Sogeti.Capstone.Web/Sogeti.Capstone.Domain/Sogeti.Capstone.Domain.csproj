@@ -71,6 +71,8 @@
     <Compile Include="Commands\CreateFoodType\CreateFoodTypeHandler.cs" />
     <Compile Include="Commands\CreateRegistrationType\CreateRegistrationType.cs" />
     <Compile Include="Commands\CreateRegistrationType\CreateRegistrationTypeHandler.cs" />
+    <Compile Include="Commands\CreateStatus\CreateStatus.cs" />
+    <Compile Include="Commands\CreateStatus\CreateStatusHandler.cs" />
     <Compile Include="Queries\RegistrationTypeListQuery\RegistrationTypeListQuery.cs" />
     <Compile Include="Queries\UserByIdQuery\UserByIdQuery.cs" />
     <Compile Include="Queries\UserByIdQuery\UserByIdQueryHandler.cs" />
