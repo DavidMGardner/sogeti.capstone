@@ -7,13 +7,13 @@ namespace Sogeti.Capstone.Data.Model.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class second : IMigrationMetadata
+    public sealed partial class First : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(second));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(First));
         
         string IMigrationMetadata.Id
         {
-            get { return "201506261606354_second"; }
+            get { return "201508120438011_First"; }
         }
         
         string IMigrationMetadata.Source

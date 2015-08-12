@@ -64,26 +64,14 @@
     <Compile Include="CapstoneContext.cs" />
     <Compile Include="CapstoneContextExtension.cs" />
     <Compile Include="IntegrationTestDatabaseInitalizer.cs" />
-    <Compile Include="Migrations\201508051748139_Third.cs" />
-    <Compile Include="Migrations\201508051748139_Third.Designer.cs">
-      <DependentUpon>201508051748139_Third.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508111647010_fourth.cs" />
-    <Compile Include="Migrations\201508111647010_fourth.Designer.cs">
-      <DependentUpon>201508111647010_fourth.cs</DependentUpon>
+    <Compile Include="Migrations\201508120438011_First.cs" />
+    <Compile Include="Migrations\201508120438011_First.Designer.cs">
+      <DependentUpon>201508120438011_First.cs</DependentUpon>
     </Compile>
     <Compile Include="RegistrationType.cs" />
     <Compile Include="DatabaseDataDeleter.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventType.cs" />
-    <Compile Include="Migrations\201506242014264_First.cs" />
-    <Compile Include="Migrations\201506242014264_First.Designer.cs">
-      <DependentUpon>201506242014264_First.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506261606354_second.cs" />
-    <Compile Include="Migrations\201506261606354_second.Designer.cs">
-      <DependentUpon>201506261606354_second.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration.cs" />
@@ -95,17 +83,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201506242014264_First.resx">
-      <DependentUpon>201506242014264_First.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506261606354_second.resx">
-      <DependentUpon>201506261606354_second.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508051748139_Third.resx">
-      <DependentUpon>201508051748139_Third.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508111647010_fourth.resx">
-      <DependentUpon>201508111647010_fourth.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508120438011_First.resx">
+      <DependentUpon>201508120438011_First.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

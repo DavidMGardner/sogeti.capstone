@@ -12,5 +12,6 @@ namespace Sogeti.Capstone.Data.Model
 
         public virtual Event Event { get; set; }
         public virtual EventType EventType { get; set; }
+        public virtual FoodType FoodType { get; set; }
     }
 }
