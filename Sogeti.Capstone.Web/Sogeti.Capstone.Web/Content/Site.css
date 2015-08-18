@@ -1,12 +1,36 @@
-﻿body {
+﻿@font-face {
+    font-family: Lato;
+    src: url("../fonts/Lato/Lato-Regular.ttf");
+    src: local("Lato"), url(../fonts/Lato/Lato-Regular.ttf) format('truetype');
+}
+
+html {
+    background-color: #E85426;
+}
+
+div {
+    font-family: Lato;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #E85426;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    background-color: #E85426;
+}
+
+.textRight {
+    text-align: right;
+}
+
+.textLeft {
+    text-align: left;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -53,9 +77,10 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-header > a 
     color: #fff;
 }
 
-.navbar-inverse {
+#navHeaderMainContainer {
   background-color: #E85426;
   border-color: #E85426;
+  border-bottom: 1px solid white;
 }
 
 .navbar-inverse .navbar-nav > li > a {
@@ -76,15 +101,14 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-header > a 
   font-weight: 300;
   line-height: 2.1428571435;
   color: white;
-  background-color: #eeeeee;
-  background-image: url(/Content/Images/17180239120_1e9d504141_o-compressor.jpg);
-  background-size: cover;
+  background-image: url('/Content/Images/Background Patterns/footer_lodyas.png');
   text-align: center;
   border-radius: 0;
 }
 
 .jumbotron h1 {
     font-size: 26px;
+    margin: 50px 0 30px 0;
 }
 
 .btn-lg {
@@ -134,4 +158,95 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-header > a 
   justify-content: center;
   flex-direction: column;
   height: 100%;
+}
+
+.homeTitle {
+    text-rendering: optimizeLegibility;
+    font-size: 32px;
+    margin: 35px 0 35px 0;
+    line-height: 1.1;
+}
+
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:active {
+    background-color: #E85426;
+    border-color: #383838;
+    color: white;
+    outline-color: transparent;
+}
+
+a.btn.btn-default.btn-lg.loginButton > span,
+a.btn.btn-default.btn-lg.registerButton > span {
+    padding-right: 4px;
+}
+
+#navHeaderCollapsed > ul.nav.navbar-nav.navbar-right > li > a {
+    color: white;
+}
+
+#navHeaderCollapsed > ul.nav.navbar-nav.navbar-right {
+    padding-top: 5px;
+}
+
+#navHeaderCollapsed > ul.nav.navbar-nav.navbar-right > li > a > i {
+    padding-right: 3px;
+}
+
+#navHeaderCollapsed {
+    border-color: white;
+}
+
+.loginButton,
+.loginButton:hover,
+.loginButton:active,
+.loginButton:focus {
+    margin-right: 15px;
+    background-color: #E85426;
+    border-color: #383838;
+    color: white;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.registerButton {
+    background-color: #E85426;
+    border-color: #383838;
+    color: white;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#projectButton > span,
+#versionButton > span {
+    background-color: transparent;
+    font-weight: normal;
+}
+
+body > div.body-content > footer,
+.footer {
+    margin-top: 15px;
+}
+
+.footerText {
+    color: white;
+}
+
+
+
+* {
+	margin: 0;
+}
+html, body {
+	height: 100%;
+}
+.wrapper {
+	min-height: 100%;
+	height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+	height: 100%;
+	margin: 0 auto -68px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+	height: 68px; /* .push must be the same height as .footer */
 }
