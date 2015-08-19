@@ -229,7 +229,7 @@ body > div.body-content > footer,
     margin-top: 15px;
 }
 
-.footerText {
+.whiteText {
     color: white;
 }
 
@@ -249,4 +249,24 @@ html, body {
 }
 .footer, .push {
 	height: 68px; /* .push must be the same height as .footer */
+}
+
+@media (max-width : 766px) {
+    .footer-left {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .footer-right {
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width : 815px) {
+    .footer-left {
+        text-align: left;
+    }
+
+    .footer-right {
+        text-align: right;
+    }
 }

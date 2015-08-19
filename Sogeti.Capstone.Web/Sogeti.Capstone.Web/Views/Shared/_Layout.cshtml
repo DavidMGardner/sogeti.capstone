@@ -34,14 +34,12 @@
 <div class="body-content">
     @RenderBody()
     <footer class="container">
-        <div class="col-xs-12">
-
             <div class="row">
-                <div class="col-xs-6">
-                    <p class="footerText">&copy; @DateTime.Now.Year - Sogeti Reference Application</p>
+                <div class="col-xs-12 col-sm-6 footer-left">
+                    <p class="whiteText">&copy; @DateTime.Now.Year - Sogeti Reference Application</p>
                 </div>
 
-                <div class="col-xs-6 text-right">
+                <div class="col-xs-12 col-sm-6 footer-right">
                     <button id="projectButton" class="btn btn-primary" type="button">
                         Project <span class="badge">@AssemblyInfo.Title</span>
                     </button>
@@ -51,7 +49,6 @@
                     </button>
                 </div>
             </div>
-        </div>
     </footer>
 </div>
 
