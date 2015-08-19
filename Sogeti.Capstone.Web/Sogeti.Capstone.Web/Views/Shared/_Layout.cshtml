@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Sogeti Event Management System - Home</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
@@ -26,8 +26,6 @@
             <a href="@Url.Action("Index", "Home")"><img id="logo" src="~/Content/Images/Sogeti.jpg" alt="Sogeti Event Management" class="navbar-brand"/></a>
         </div>
         <div id="navHeaderCollapsed" class="navbar-collapse collapse">
-            <ul id="navHeaderUL" class="nav navbar-nav">
-            </ul>
             @Html.Partial("_LoginPartial")
         </div>
     </div>
