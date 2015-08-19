@@ -251,7 +251,7 @@ html, body {
 	height: 68px; /* .push must be the same height as .footer */
 }
 
-@media (max-width : 766px) {
+@media (max-width : 815px) {
     .footer-left {
         text-align: center;
         margin-bottom: 10px;
@@ -264,6 +264,7 @@ html, body {
 @media only screen and (min-width : 815px) {
     .footer-left {
         text-align: left;
+        margin: 10px 0 10px 0;
     }
 
     .footer-right {
