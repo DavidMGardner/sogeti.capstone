@@ -8,7 +8,11 @@ html {
     background-color: #E85426;
 }
 
-div {
+.modal-title,
+div,
+h1,
+h2,
+h3 {
     font-family: Lato;
 }
 
@@ -16,6 +20,10 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
     background-color: #E85426;
+}
+
+.control-label {
+    color: #E85426;
 }
 
 /* Set padding to keep content from hitting the edges */
