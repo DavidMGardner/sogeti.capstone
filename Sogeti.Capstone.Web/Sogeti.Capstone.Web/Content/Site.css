@@ -94,7 +94,7 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-header > a 
 }
 
 .jumbotron {
-  height: 650px;
+  height: 660px;
   margin-bottom: 0;
   padding: 30px 0 0;
   font-size: 21px;
@@ -262,10 +262,6 @@ body > div.body-content > footer,
     .footer-right {
         text-align: right;
     }
-}
-
-.push {
-    background-image: url('/Content/Images/Background Patterns/footer_lodyas.png');
 }
 
 /* STICKY FOOTER: START */

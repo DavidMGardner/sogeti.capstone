@@ -9,6 +9,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/stickyFooter.js")
     @Scripts.Render("~/Scripts/slideout.js")
 
 </head>
@@ -56,17 +57,6 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        $(document).ready(function () {
-            $(window).resize(function () {
-                var footerHeight = $('.footer').outerHeight();
-                var stickFooterPush = $('.push').height(footerHeight);
-                $('.wrapper').css({ 'marginBottom': '-' + footerHeight + 'px' });
-            });
-            $(window).resize();
-        });
-    </script>
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
