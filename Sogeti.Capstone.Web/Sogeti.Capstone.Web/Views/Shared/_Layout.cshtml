@@ -9,6 +9,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/slideout.js")
 
 </head>
 <body>
@@ -31,7 +32,7 @@
         </div>
     </div>
 </div>
-<div class="body-content">
+<main class="body-content">
     @RenderBody()
     <footer class="container">
             <div class="row">
@@ -50,7 +51,7 @@
                 </div>
             </div>
     </footer>
-</div>
+</main>
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")

@@ -233,22 +233,9 @@ body > div.body-content > footer,
     color: white;
 }
 
-
-
-* {
-	margin: 0;
-}
-html, body {
-	height: 100%;
-}
-.wrapper {
-	min-height: 100%;
-	height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
-	height: 100%;
-	margin: 0 auto -68px; /* the bottom margin is the negative value of the footer's height */
-}
-.footer, .push {
-	height: 68px; /* .push must be the same height as .footer */
+.footer-right,
+.footer-left {
+    margin-top: 10px;
 }
 
 @media (max-width : 815px) {
@@ -258,6 +245,12 @@ html, body {
     }
     .footer-right {
         text-align: center;
+    }
+}
+
+@media (max-width: 410px) {
+    #projectButton {
+        margin-bottom: 3px;
     }
 }
 
