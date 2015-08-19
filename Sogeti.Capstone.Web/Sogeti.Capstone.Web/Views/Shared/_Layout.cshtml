@@ -15,25 +15,31 @@
 <body>
 @Html.Partial("_LoginViewPartial", new UserLoginViewModel())
 
-<div id="navHeaderMainContainer" class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div id="navHeader" class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="@Url.Action("Index", "Home")"><img id="logo" src="~/Content/Images/Sogeti.jpg" alt="Sogeti Event Management" class="navbar-brand"/></a>
-        </div>
-        <div id="navHeaderCollapsed" class="navbar-collapse collapse">
-            @Html.Partial("_LoginPartial")
-        </div>
+    <div class="wrapper">
+        <header id="navHeaderMainContainer" class="header navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div id="navHeader" class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="@Url.Action("Index", "Home")"><img id="logo" src="~/Content/Images/Sogeti.jpg" alt="Sogeti Event Management" class="navbar-brand" /></a>
+                </div>
+                <div id="navHeaderCollapsed" class="navbar-collapse collapse">
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </header>
+
+        <main class="body-content main">
+            @RenderBody()
+        </main>
+
+        <div class="push"></div>
     </div>
-</div>
-<main class="body-content">
-    @RenderBody()
-</main>
-    <footer class="container">
+
+    <footer class="footer container">
         <div class="row">
             <div class="col-xs-12 col-sm-6 footer-left">
                 <p class="whiteText">&copy; @DateTime.Now.Year - Sogeti Reference Application</p>
@@ -50,6 +56,17 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        $(document).ready(function () {
+            $(window).resize(function () {
+                var footerHeight = $('.footer').outerHeight();
+                var stickFooterPush = $('.push').height(footerHeight);
+                $('.wrapper').css({ 'marginBottom': '-' + footerHeight + 'px' });
+            });
+            $(window).resize();
+        });
+    </script>
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
