@@ -18,8 +18,8 @@
     </div>
 </div>
 <div class="stripe">
-    <div class="vertical-center">
-        <h1>How creating an event works</h1>
+    <div class="vertical-center alternateBackground layer">
+        <h1 class="greyFont">How creating an event works</h1>
         <br />
         <div>
         </div>
@@ -38,10 +38,10 @@
                     <h4 class="modal-title" id="createModalLabel">Create an event</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="container well" style="background-color: whitesmoke; padding: 10px;">
+                    <div class="container eventCreateModuleContainer">
                         <div class="row control-group">
                             <div class="col-sm-12 col-md-12 col-lg-12">
-                                @Html.Label("Event Name:", htmlAttributes: new { @class = "control-label" })
+                                @Html.Label("Event Name:", htmlAttributes: new { @class = "control-label sogetiRedFont" })
                                 @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @required = "required", @placeholder = "Enter a title" } })
                                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                             </div>
@@ -74,7 +74,7 @@
                         <br />
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-lg-12">
-                                @Html.Label("Location:", htmlAttributes: new { @class = "control-label" })
+                                @Html.Label("Location:", htmlAttributes: new { @class = "control-label sogetiRedFont" })
                                 @Html.EditorFor(model => model.LocationInformation, new { htmlAttributes = new { @class = "form-control", @required = "required", @placeholder = "Type Location Information" } })
                                 @Html.ValidationMessageFor(model => model.LocationInformation, "", new { @class = "text-danger" })
                             </div>
@@ -82,7 +82,7 @@
                         <br />
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-lg-12">
-                                @Html.Label("Description:", htmlAttributes: new { @class = "control-label" })
+                                @Html.Label("Description:", htmlAttributes: new { @class = "control-label sogetiRedFont" })
                                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @required = "required", @placeholder = "Type a Description" } })
                                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                             </div>
@@ -90,7 +90,7 @@
                         <br />
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-lg-12">
-                                @Html.Label("Logo Path:", htmlAttributes: new { @class = "control-label" })
+                                @Html.Label("Logo Path:", htmlAttributes: new { @class = "control-label sogetiRedFont" })
                                 @Html.EditorFor(model => model.LogoPath, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.LogoPath, "", new { @class = "text-danger" })
                             </div>
