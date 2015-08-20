@@ -227,6 +227,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\hover.css" />
     <Content Include="Content\Images\Background Patterns\footer_lodyas.png" />
     <Content Include="Content\Images\Background Patterns\gplaypattern.png" />
     <Content Include="Content\Images\business meeting hand shake-min.jpg" />
