@@ -324,6 +324,12 @@ body > div.body-content > footer,
     background-color: #373737;
 }
 
+#eventsPartial > div::before,
+#eventsPartial > div::after {
+    display: inherit;
+    clear: none;
+}
+
 @media (max-width : 815px) {
     .footer-left {
         text-align: center;

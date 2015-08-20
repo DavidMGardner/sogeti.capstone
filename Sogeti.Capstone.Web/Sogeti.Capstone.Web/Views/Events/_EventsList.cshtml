@@ -2,13 +2,6 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        int counter = 0;
-        if (counter != 0 && counter%3 == 0)
-        {
-            @:</div>
-            @:<div class="row">
-        }
-
         <div class="eventThumbnailColumn col-xs-6 col-sm-4 col-md-3 col-lg-3">
             <div class="eventThumbnail thumbnail">
                 <img src="~/Content/Images/shutterstock_84415312-compressor.jpg" alt="@item.Title">
@@ -30,7 +23,5 @@
                 </div>
             </div>
         </div>
-
-        counter++;
     }
 </div>
