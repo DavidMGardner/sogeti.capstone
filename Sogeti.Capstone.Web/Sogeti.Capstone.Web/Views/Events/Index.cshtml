@@ -3,21 +3,19 @@
     ViewBag.Title = "Events";
 }
 
-<br/>
-<div class="container">
-
-    <h3>
-        <div class="pull-right">
-            @using (Html.BeginForm())
-            {
-                @Html.TextBox("searchQuery")
-                @Html.ActionLink("Search", "Index", new { searchQuery = Request["searchQuery"]}, new { @class = "btn btn-warning" })
-            }
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="container">
+            <div class="eventSearchBox">
+                @using (Html.BeginForm())
+                {
+                    @Html.TextBox("searchQuery")
+                    @Html.ActionLink("Search", "Index", new { searchQuery = Request["searchQuery"] }, new { @class = "btn btn-warning eventSearchButton" })
+                }
+            </div>
         </div>
-    </h3>
+    </div>
 </div>
-
-<br />
 
 <div class="container" id="eventsPartial">
     @Html.Partial("_EventsList")

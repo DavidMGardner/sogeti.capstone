@@ -4,6 +4,14 @@
     src: local("Lato"), url(../fonts/Lato/Lato-Regular.ttf) format('truetype');
 }
 
+.sogetiRedFont {
+    color: #E85426;
+}
+
+.sogetiRedBackground {
+    background-color: #E85426;
+}
+
 html {
     background-color: #E85426;
 }
@@ -16,14 +24,32 @@ h3 {
     font-family: Lato;
 }
 
+.modal-content {
+    background-color: #373737;
+    color: white;
+}
+
+.control-label {
+    font-weight: normal;
+}
+
+.fade.in {
+    overflow: hidden;
+}
+
+/*MAKE X ON MODULE WHITE*/
+div.modal-header > button > span {
+    color: white;
+}
+
+.body-content.main {
+    background-image: url('/Content/Images/Background Patterns/footer_lodyas.png');
+}
+
 body {
     padding-top: 50px;
     padding-bottom: 20px;
     background-color: #E85426;
-}
-
-.control-label {
-    color: #E85426;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -144,11 +170,6 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-header > a 
   border-radius: 0;
 }
 
-.thumbnail {
-    height: 550px;
-    margin-bottom: 10px;
-}
-
 .stripe {
   height: 300px;
   margin-bottom: 0;
@@ -245,6 +266,35 @@ body > div.body-content > footer,
     margin-top: 10px;
 }
 
+.eventSearchBox {
+    margin: 35px 0 25px 0;
+    text-align: left;
+}
+
+#searchQuery {
+    width: 215px;
+    height: 34px;
+}
+
+.eventSearchButton {
+    margin-left: 8px;
+}
+
+.eventTileButtons {
+    margin: 10px 0 30px 0;
+    position: absolute;
+    bottom: 0;
+}
+
+.eventEditButton {
+    margin-right: 5px;
+}
+
+.eventThumbnail {
+    height: 550px;
+    margin-bottom: 20px;
+}
+
 @media (max-width : 815px) {
     .footer-left {
         text-align: center;
@@ -258,6 +308,22 @@ body > div.body-content > footer,
 @media (max-width: 410px) {
     #projectButton {
         margin-bottom: 3px;
+    }
+}
+
+@media (max-width: 440px) {
+    .eventThumbnailColumn {
+        width: 100%;
+    }
+
+    .eventThumbnail {
+        height: 575px !important;
+    }
+}
+
+@media (max-width: 530px) {
+    .eventThumbnail {
+        height: 500px;
     }
 }
 

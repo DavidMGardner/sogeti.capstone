@@ -6,28 +6,27 @@
         if (counter != 0 && counter%3 == 0)
         {
             @:</div>
-            @:<br/>
             @:<div class="row">
         }
 
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img src="~/Content/Images/shutterstock_84415312-compressor.jpg" alt="@item.Title" style="min-width: 100%">
+        <div class="eventThumbnailColumn col-xs-6 col-sm-4 col-md-3 col-lg-3">
+            <div class="eventThumbnail thumbnail">
+                <img src="~/Content/Images/shutterstock_84415312-compressor.jpg" alt="@item.Title">
                 <div class="caption">
-                    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
-                    <p>
+                    <h3 class="eventTitle sogetiRedFont">@Html.DisplayFor(modelItem => item.Title)</h3>
+                    <div>
                         @{
                             string parameterValue = item.Description.Substring(0, Math.Min(item.Description.Length, 100));
                         }
                         @Html.DisplayFor(modelItem => parameterValue) ...
-                    </p>
-                    <p>
-                        @Html.ActionLink("Edit", "Edit", new {id = item.Id}, new {@class = "btn btn-primary"})
+                    </div>
+                    <div class="eventTileButtons">
+                        @Html.ActionLink("Edit", "Edit", new {id = item.Id}, new {@class = "btn btn-primary eventEditButton"})
 
-                        <a href="" class="btn btn-primary" data-id="@item.Id" data-toggle="modal" data-target="#details-event" id="details-modal">
+                        <a href="" class="btn btn-primary eventDetailsButton" data-id="@item.Id" data-toggle="modal" data-target="#details-event" id="details-modal">
                             <span>Details</span>
                         </a>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>
