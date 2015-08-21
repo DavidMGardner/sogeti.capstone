@@ -6,7 +6,7 @@ namespace Sogeti.Capstone.Domain.Queries.UserByIdQuery
 {
     public class UserByIdQueryHandler : IAsyncRequestHandler<UserByIdQuery, UserByIdResult>
     {
-        public async Task<UserByIdResult> HandleAsync(UserByIdQuery request)
+        public Task<UserByIdResult> HandleAsync(UserByIdQuery request)
         {
             int id = Convert.ToInt32(request.Id);
 
@@ -27,7 +27,7 @@ namespace Sogeti.Capstone.Domain.Queries.UserByIdQuery
                 }
             };
 
-            return response;
+            return Task.FromResult(response);
         }
     }
 }
