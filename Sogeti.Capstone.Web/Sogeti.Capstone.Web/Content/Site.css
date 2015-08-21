@@ -28,6 +28,14 @@ h3 {
     font-family: Lato;
 }
 
+.marginLeft15 {
+    margin-left: 15px;
+}
+
+.marginRight15 {
+    margin-right: 15px;
+}
+
 .modal-content {
     background-color: #373737;
     color: white;
