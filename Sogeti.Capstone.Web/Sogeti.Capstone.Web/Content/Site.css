@@ -138,14 +138,10 @@ body > div.navbar.navbar-inverse.navbar-fixed-top > div > div.navbar-header > a 
 .jumbotron {
   height: 660px;
   margin-bottom: 0;
-  padding: 30px 0 0;
-  font-size: 21px;
-  font-weight: 300;
-  line-height: 2.1428571435;
+  padding-top: 5%;
   color: white;
   background-image: url('/Content/Images/Background Patterns/footer_lodyas.png');
   text-align: center;
-  border-radius: 0;
 }
 
 .jumbotron h1 {
@@ -279,8 +275,13 @@ body > div.body-content > footer,
     margin-top: 15px;
 }
 
-.whiteText {
+.whiteText,
+.whiteText:hover,
+.whiteText:visited,
+.whiteText:focus,
+.whiteText:active {
     color: white;
+    text-decoration: none;
 }
 
 .footer-left {

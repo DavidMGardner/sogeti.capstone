@@ -45,15 +45,15 @@
     <footer class="footer container">
         <div class="row">
             <div class="col-xs-12 col-sm-6 footer-left">
-                <p class="whiteText">&copy; @DateTime.Now.Year - Sogeti Reference Application</p>
+                <a href="https://us.sogeti.com/" class="whiteText">&copy; @DateTime.Now.Year - Sogeti Reference Application</a>
             </div>
 
             <div class="col-xs-12 col-sm-6 footer-right">
-                <button id="projectButton" class="btn btn-primary" type="button">
+                <button id="projectButton" class="btn btn-primary hvr-float-shadow" type="button">
                     Project <span class="badge">@AssemblyInfo.Title</span>
                 </button>
 
-                <button id="versionButton" class="btn btn-primary" type="button">
+                <button id="versionButton" class="btn btn-primary hvr-float-shadow" type="button">
                     Build Number <span class="badge">@ViewContext.Controller.GetType().Assembly.GetName().Version</span>
                 </button>
             </div>
