@@ -36,9 +36,21 @@ h3 {
     margin-right: 15px;
 }
 
+.marginBottom15 {
+    margin-bottom: 15px;
+}
+
+.marginTop15 {
+    margin-top: 15px;
+}
+
 .modal-content {
     background-color: #373737;
     color: white;
+}
+
+.modal-body > dl > dt {
+    font-weight: normal;
 }
 
 .control-label {

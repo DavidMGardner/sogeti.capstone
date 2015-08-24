@@ -8,9 +8,8 @@
 <div class="landing-hero">
     <div class="vertical-center">
         <h1>Create an Event</h1>
-        <br/>
         <div>
-            <a href="" data-toggle="modal" data-target="#createModal" class="btn btn-primary btn-lg hvr-float-shadow">
+            <a href="" data-toggle="modal" data-target="#createModal" class="btn btn-primary btn-lg hvr-float-shadow marginTop15">
                 <i class="glyphicon glyphicon-log-in"></i>
                 <span>Schedule</span>
             </a>
@@ -111,7 +110,7 @@
                 <div class="modal-footer">
                     <div class="form-group">
                         <div class="pull-right col-md-offset-2 col-md-10">
-                            <input type="submit" value="Create" class="btn btn-primary" />
+                            @Html.ActionLink("Schedule", "Create", null , new { @class = "btn btn-default btn-lg" })
                         </div>
                     </div>
                 </div>

@@ -16,6 +16,7 @@ using Sogeti.Capstone.Domain.Queries.EventTypeListQuery;
 using Sogeti.Capstone.Domain.Queries.RegistrationTypeListQuery;
 using Sogeti.Capstone.Web.Application;
 using Sogeti.Capstone.Web.ViewModel;
+using Sogeti.Capstone.Domain.Commands.CreateEvent;
 
 namespace Sogeti.Capstone.Web.Controllers
 {
@@ -73,9 +74,24 @@ namespace Sogeti.Capstone.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,StartDateTime,EndDateTime,Description,LogoPath,LocationInformation")] EventViewModel @event)
+        public async Task<ActionResult> CreateEvent([Bind(Include = "Id,Title,StartDateTime,EndDateTime,Description,LogoPath,LocationInformation")] EventViewModel @event)
         {
-            throw new NotImplementedException();
+            if (!ModelState.IsValid)
+            {
+                return View(@event);
+            }
+
+            var newEvent = await Mediator.RequestAsync(new CreateEvent
+            {
+                Title = @event.Title,
+                StartDateTime = @event.StartDateTime,
+                EndDateTime = @event.EndDateTime,
+                Description = @event.Description,
+                LogoPath = @event.LogoPath,
+                LocationInformation = @event.LocationInformation
+            });
+
+            return RedirectToAction("Events");
         }
 
         // GET: Events/Edit/5
