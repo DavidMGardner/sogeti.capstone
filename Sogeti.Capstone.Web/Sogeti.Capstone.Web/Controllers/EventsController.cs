@@ -76,22 +76,14 @@ namespace Sogeti.Capstone.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateEvent([Bind(Include = "Id,Title,StartDateTime,EndDateTime,Description,LogoPath,LocationInformation")] EventViewModel @event)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(@event);
+                var command = @event.MapTo<CreateEvent>();
+                var result = await Mediator.RequestAsync(command);
+                return RedirectToAction("Index");
             }
 
-            var newEvent = await Mediator.RequestAsync(new CreateEvent
-            {
-                Title = @event.Title,
-                StartDateTime = @event.StartDateTime,
-                EndDateTime = @event.EndDateTime,
-                Description = @event.Description,
-                LogoPath = @event.LogoPath,
-                LocationInformation = @event.LocationInformation
-            });
-
-            return RedirectToAction("Events");
+            return View(@event);
         }
 
         // GET: Events/Edit/5
