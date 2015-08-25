@@ -86,40 +86,6 @@ namespace Sogeti.Capstone.Web.Controllers
             return View(@event);
         }
 
-        // GET: Events/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            var viewModel = await GetEventViewModelById(id);
-            return View(viewModel);
-        }
-
-        // POST: Events/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public Task<ActionResult> EditEvent([Bind(Include = "Id,Title,StartDateTime,EndDateTime,Description,LogoPath,LocationInformation")] EventViewModel @event)
-        {
-            throw new NotImplementedException();
-        }
-
-        // GET: Events/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            var viewModel = await GetEventViewModelById(id);
-            return View(viewModel);
-
-        }
-
-        // POST: Events/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            throw new NotImplementedException();
-
-        }
-
         private static IEnumerable<EventViewModel> GetRangeEventViewModels(int? pageId, int eventsPerPage, IEnumerable<EventViewModel> viewModel)
         {
             int startPage = (pageId ?? 1);
@@ -139,7 +105,9 @@ namespace Sogeti.Capstone.Web.Controllers
                 filterQuery = filterQuery.ToLower();
                 viewModel = viewModel.Where(s => s.Title.ToLower().Contains(filterQuery)
                                                  || s.Description.ToLower().Contains(filterQuery)
-                                                 || s.LocationInformation.ToLower().Contains(filterQuery));
+                                                 || s.LocationInformation.ToLower().Contains(filterQuery)
+                                                 || s.StartDateTime.ToString().Contains(filterQuery)
+                                                 || s.EndDateTime.ToString().Contains(filterQuery));
             }
             return viewModel;
         }
