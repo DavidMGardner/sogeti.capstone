@@ -15,7 +15,7 @@ namespace Sogeti.Capstone.Web.ViewModel
         [DataType(DataType.Text)]
         public EventType EventType { get; set; }
 
-        private DateTime _startDateTime = DateTime.Now;
+        private DateTime _startDateTime = DateTime.MinValue;
         [Required(ErrorMessage = "A start date is required")]
         [Display(Name = "Start Time")]
         [DataType(DataType.DateTime)]
@@ -31,8 +31,7 @@ namespace Sogeti.Capstone.Web.ViewModel
             }
         }
 
-
-        private DateTime _endDateTime = DateTime.Now.AddDays(1);
+        private DateTime _endDateTime = DateTime.MaxValue;
         [Required(ErrorMessage = "An end date is required")]
         [Display(Name = "End Time")]
         [DataType(DataType.DateTime)]

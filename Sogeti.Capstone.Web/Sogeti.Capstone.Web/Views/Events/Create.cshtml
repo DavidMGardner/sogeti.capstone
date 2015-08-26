@@ -50,7 +50,7 @@
                             <div class="row">
                                 <div class="center-block col-sm-12 col-md-12 col-lg-12">
                                     @Html.Label("Event Type:")
-                                    @Html.DropDownList("chosenEventType", new SelectList(ViewBag.EventType, "Id", "Title"))
+                                    @Html.DropDownListFor(model => model.EventType.Id, new SelectList(ViewBag.EventType, "Id", "Title"))
                                     @Html.ValidationMessageFor(model => model.EventType, "", new { @class = "text-danger" })
                                     <br />
                                 </div>
@@ -72,6 +72,8 @@
                                     <input class="form-control" type="time" name="EndTime" min=@DateTime.Now required="required" />
                                     @Html.ValidationMessageFor(model => model.EndDateTime, "", new { @class = "text-danger" })
                                 </div>
+                                <input name="StartDateTime" hidden="hidden" />
+                                <input name="EndDateTime" hidden="hidden"/>
                             </div>
                             <br />
                             <div class="row">
@@ -102,7 +104,7 @@
                                 <div class="center-block col-sm-12 col-md-12 col-lg-12">
                                     <br />
                                     @Html.Label("Registration Type:")
-                                    @Html.DropDownList("chosenRegistrationType", new SelectList(ViewBag.RegistrationType, "Id", "Title"))
+                                    @Html.DropDownListFor(model => model.RegistrationType.Id, new SelectList(ViewBag.RegistrationType, "Id", "Title"))
                                     @Html.ValidationMessageFor(model => model.RegistrationType, "", new { @class = "text-danger" })
                                     <span></span>
                                     <br />
@@ -125,9 +127,21 @@
 }
 
 <script type="text/javascript">
+
     $(".submit").click(function () {
         document.forms[0].submit();
+
+        var date = $('form input[name = "Date"]').val();
+        var startTime = $('form input[name = "StartTime"]').val();
+        var endTime = $('form input[name = "EndTime"]').val();
+
+        var startDateTime = date + startTime;
+        var endDateTime = date + endTime;
+
+        $('form input[name = "StartDateTime"]').val(startDateTime);
+        $('form input[name = "EndDateTime"]').val(endDateTime);
     });
+
 </script>
 
 @section Scripts {
