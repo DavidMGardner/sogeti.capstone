@@ -74,7 +74,7 @@ namespace Sogeti.Capstone.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateEvent([Bind(Include = "Id,Title,StartDateTime,EndDateTime,Description,LogoPath,LocationInformation")] EventViewModel @event)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Title,EventType,StartDateTime,EndDateTime,Description,LogoPath,LocationInformation,RegistrationType")] EventViewModel @event)
         {
             if (ModelState.IsValid)
             {

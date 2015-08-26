@@ -9,7 +9,7 @@ namespace Sogeti.Capstone.Domain.Commands.CreateEvent
 {
     public class CreateEvent : IAsyncRequest<CreateEventResult>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
@@ -22,7 +22,7 @@ namespace Sogeti.Capstone.Domain.Commands.CreateEvent
             
         }
 
-        public CreateEvent(string id, string title, DateTime startDateTime, DateTime endDateTime, string description, string logoPath, string locationInformation)
+        public CreateEvent(int id, string title, DateTime startDateTime, DateTime endDateTime, string description, string logoPath, string locationInformation)
         {
             Id = id;
             Title = title;
